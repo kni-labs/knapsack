@@ -39,7 +39,7 @@
 
 @mixin full-page($height: 100vh, $min-height: 600px, $max-height: 850px) {
   // Only show for tablet and above
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
     min-height: $min-height;
     max-height: $max-height;
     height: $height;
