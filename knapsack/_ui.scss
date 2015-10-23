@@ -1,0 +1,34 @@
+// Button Mixin (in progress)
+@mixin button($background-color: $button-primary, $color: $white){
+  $global-border-radius: 3px !default;
+  padding: 10px 22px;
+  border-radius: $global-border-radius;
+  background-color: $background-color;
+  color: $color;
+  cursor: pointer;
+  line-height: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  transition: all .2s ease;
+
+  &:hover {
+    background-color: darken($background-color, 10%);
+  }
+}
+
+// Mixin: Horizontal Rule
+//
+// Clean reset for divider lines.
+//
+// ex: rule()
+// ex rule(blue)
+
+@mixin rule($color: rgba(#000, .15), $spacing: 1.5em) {
+  border: 0;
+  border-bottom: 1px solid $color;
+  height: 0;
+  padding: 0;
+  margin: $spacing 0;
+}

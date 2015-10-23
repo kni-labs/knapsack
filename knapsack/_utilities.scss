@@ -1,0 +1,24 @@
+// Function: Rem Calculator
+//
+// Calculates and returns the rem value based on px input. Default base font
+// size is 16px, but can be changed with $base-font-size.
+//
+// ex       : rem(30px) or rem(30)
+// returns  : 1.875rem
+
+@function rem($size) {
+  $rem-size: $size / $base-font-size;
+  @return #{$rem-size}rem;
+}
+
+// Mixin: Debug
+//
+// Debugging tool - adds a border to the current element, its children,
+// grandchildren, etc so you can see what's up – great for precise layout
+// tweaks.  It will also add flags if you made mistakes like put in inline
+// styles, forgot an alt on an image, left the alt blank, etc. Not to be used
+// in production, obviously.
+//
+// View demo: http://codepen.io/dbox/pen/GJZzYo?editors=110
+
+@mixin debug() {> * {  border: 1px solid green;} > * > * {border: 1px solid tomato } > * > * > * { border: 1px solid DeepSkyBlue; } > * > * > * > * { border: 1px solid DeepPink; } > * > * > * > * > * { border: 1px solid MediumSlateBlue;}}

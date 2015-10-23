@@ -1,0 +1,25 @@
+{
+  "name": "knapsack",
+  "version": "0.0.1",
+  "description": "Sass utility belt",
+  "main": "knapsack/_index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kni-labs/knapsack.git"
+  },
+  "keywords": [
+    "knapsack",
+    "kni",
+    "sass",
+    "scss"
+  ],
+  "author": "Daniel Box",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kni-labs/knapsack/issues"
+  },
+  "homepage": "https://github.com/kni-labs/knapsack#readme"
+}

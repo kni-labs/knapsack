@@ -1,0 +1,45 @@
+// Mixin: Ratio Box
+// Set a specific width/height ratio. Useful on background images and iframes.
+
+@mixin ratio-box ($ratio: 1/1) {
+  overflow: hidden;
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    height: 0;
+    padding-top: (1 / $ratio) * 100%;
+  }
+}
+
+// Mixin: Full Page
+
+// Sets an element to be full viewport height, with reasonble min and max-height
+// values.
+
+@mixin full-page($height: 100vh, $min-height: 600px, $max-height: 850px) {
+  // Only show for tablet and above
+  @media screen and (min-width: 767px) {
+    min-height: $min-height;
+    max-height: $max-height;
+    height: $height;
+  }
+}
+
+// Mixin: Vertically Align
+// Cross browser vertical align. Works down to IE9.
+//
+// ex. @include vertically-align();
+
+@mixin vertically-align($reset : null) {
+  @if ($reset != false) {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  } @else {
+    position: relative;
+    top: 0;
+    transform: translateY(0);
+  }
+}

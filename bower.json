@@ -1,0 +1,24 @@
+{
+  "name": "knapsack",
+  "homepage": "https://github.com/kni-labs/knapsack",
+  "authors": [
+    "Daniel Box <danielbox@gmail.com>"
+  ],
+  "description": "Handy sass mixins and utilities",
+  "main": "knapsack/_index.scss",
+  "moduleType": [],
+  "keywords": [
+    "knapsack",
+    "kni",
+    "scss",
+    "sass"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
