@@ -1,0 +1,93 @@
+// ----
+// Reset
+// ----
+
+
+// Resets via scut:
+// https://github.com/davidtheclark/scut/
+
+// Clickable form elements should have a pointer.
+@mixin reset-pointer {
+  a,
+  label,
+  select,
+  option,
+  button {
+    cursor: pointer;
+  }
+}
+
+// Reset the forms
+@mixin reset-form {
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+  textarea {
+    resize: vertical;
+  }
+}
+
+// Reset default button styles, which are never used.
+@mixin reset-button {
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+  }
+}
+
+// Some paragraph margins just get in the way.
+@mixin reset-paragraph {
+  p:first-of-type {
+    margin-top: 0;
+  }
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+// You want these elements fluid, probably.
+@mixin reset-media {
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Remove default margins.
+@mixin reset-figure {
+  figure {
+    margin: 0;
+  }
+}
+
+// Call them all
+@mixin reset-elements () {
+    @include reset-pointer;
+    @include reset-form;
+    @include reset-button;
+    @include reset-paragraph;
+    @include reset-media;
+    @include reset-figure;
+  }
+}

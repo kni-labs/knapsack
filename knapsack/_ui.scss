@@ -1,4 +1,8 @@
-// Button Mixin (in progress)
+// ----
+// Typography
+// ----
+
+// Mixin Button (In Progress)
 @mixin button($background-color: $button-primary, $color: $white){
   $global-border-radius: 3px !default;
   padding: 10px 22px;
