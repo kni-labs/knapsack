@@ -22,3 +22,40 @@
 // View demo: http://codepen.io/dbox/pen/GJZzYo?editors=110
 
 @mixin debug() {> * {  border: 1px solid green;} > * > * {border: 1px solid tomato } > * > * > * { border: 1px solid DeepSkyBlue; } > * > * > * > * { border: 1px solid DeepPink; } > * > * > * > * > * { border: 1px solid MediumSlateBlue;}}
+
+// Mixin: Triangle
+//
+// Makes a little css triangle for you. Pass it a direction (up, down, left,
+// right), size (in pixels), and a color.
+//
+// ex. @include triangle()
+// ex. @include triangle('down', 15px, blue)
+
+@mixin triangle($direction:'up', $size:10px, $color:#000) {
+  width: 0;
+  height: 0;
+
+  @if $direction == 'up' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+  }
+
+  @else if $direction == 'down' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  }
+
+  @else if $direction == 'left' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  }
+
+  @else if $direction == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+}

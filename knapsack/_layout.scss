@@ -1,3 +1,22 @@
+// Mixin: Clearfix
+//
+//ex. @include clearfix()
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Alias: cf
+// Clearfix but shorter.
+
+@mixin cf() {
+  @include clearfix();
+}
+
 // Mixin: Ratio Box
 // Set a specific width/height ratio. Useful on background images and iframes.
 

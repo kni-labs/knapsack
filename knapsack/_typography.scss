@@ -17,3 +17,26 @@
     margin: 0;
   }
 }
+
+// Mixin: Inline List
+//
+// For when you need your list to be horizontal. Pass it the spacing you want
+// between list elements, whatever units you'd like. Defaults to 20px.
+//
+// ex. @include inline-list()
+
+@mixin inline-list($spacing: 20px) {
+  @include clearfix();
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: left;
+    margin-right: $spacing;
+    list-style-type: none;
+  }
+
+  li:last-child {
+    margin-right: 0;
+  }
+}
