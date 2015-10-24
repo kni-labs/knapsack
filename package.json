@@ -1,6 +1,6 @@
 {
   "name": "knapsack",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Sass utility belt",
   "main": "knapsack/_index.scss",
   "scripts": {
