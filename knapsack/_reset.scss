@@ -83,11 +83,10 @@
 
 // Call them all
 @mixin reset-elements () {
-    @include reset-pointer;
-    @include reset-form;
-    @include reset-button;
-    @include reset-paragraph;
-    @include reset-media;
-    @include reset-figure;
-  }
+  @include reset-pointer;
+  @include reset-form;
+  @include reset-button;
+  @include reset-paragraph;
+  @include reset-media;
+  @include reset-figure;
 }
