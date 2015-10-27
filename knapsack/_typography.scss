@@ -44,3 +44,25 @@
     margin-right: 0;
   }
 }
+
+// Mixin: Text-list
+//
+// We tend to spend a great deal of time resetting all of the properties for
+// lists. This put them back to roughly the same state as browser defaults. You
+// can pass it any style that list-style-type would normally take:
+// http://www.w3schools.com/cssref/pr_list-style-type.asp
+//
+// ex. @include default-list();
+// ex. @include default-list('decimal');
+
+@mixin text-list($style: 'disc') {
+  margin: 5px 15px;
+  margin: 0.32rem 0.94rem;
+  padding-left: 1rem;
+
+  li {
+    list-style-type: unquote($style);
+    padding: 2px 0;
+    padding: 0.125rem;
+  }
+}
