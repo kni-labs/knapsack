@@ -1,9 +1,14 @@
 // ----
-// Typography
+// Ui
 // ----
 
-// Mixin Button (In Progress)
-@mixin button($background-color: $button-primary, $color: $white){
+// Mixin Button
+//
+// A starting place for button styling.
+//
+// ex: @include button(yellow, black);
+
+@mixin button($background-color: DeepSkyBlue, $color: white){
   $global-border-radius: 3px !default;
   padding: 10px 22px;
   border-radius: $global-border-radius;
@@ -26,8 +31,8 @@
 //
 // Clean reset for divider lines.
 //
-// ex: rule()
-// ex rule(blue)
+// ex: @include rule();
+// ex @include rule(blue);
 
 @mixin rule($color: rgba(#000, .15), $spacing: 1.5em) {
   border: 0;
