@@ -15,6 +15,19 @@
   @return #{$rem-size}rem;
 }
 
+
+// Function: Strip Unit
+
+// Sometimes it's just easier to do calculations with the unit's stripped.
+// read more here: https://css-tricks.com/snippets/sass/strip-unit-function/
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
 // Mixin: Debug
 //
 // Debugging tool - adds a border to the current element, its children,
@@ -25,7 +38,7 @@
 //
 // View demo: http://codepen.io/dbox/pen/GJZzYo?editors=110
 
-@mixin debug() {> * {  border: 1px solid green;} > * > * {border: 1px solid tomato } > * > * > * { border: 1px solid DeepSkyBlue; } > * > * > * > * { border: 1px solid DeepPink; } > * > * > * > * > * { border: 1px solid MediumSlateBlue;}}
+@mixin debug() {> * {  border: 1px solid green;} > * > * {border: 1px solid tomato; } > * > * > * { border: 1px solid DeepSkyBlue; } > * > * > * > * { border: 1px solid DeepPink; } > * > * > * > * > * { border: 1px solid MediumSlateBlue;}}
 
 // Mixin: Triangle
 //
@@ -40,26 +53,20 @@
   height: 0;
 
   @if $direction == 'up' {
+    border-bottom: $size solid $color;
     border-left: $size solid transparent;
     border-right: $size solid transparent;
-    border-bottom: $size solid $color;
-  }
-
-  @else if $direction == 'down' {
+  } @else if $direction == 'down' {
     border-left: $size solid transparent;
     border-right: $size solid transparent;
     border-top: $size solid $color;
-  }
-
-  @else if $direction == 'left' {
-    border-top: $size solid transparent;
+  } @else if $direction == 'left' {
     border-bottom: $size solid transparent;
     border-right: $size solid $color;
-  }
-
-  @else if $direction == 'right' {
     border-top: $size solid transparent;
+  } @else if $direction == 'right' {
     border-bottom: $size solid transparent;
     border-left: $size solid $color;
+    border-top: $size solid transparent;
   }
 }

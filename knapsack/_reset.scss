@@ -24,6 +24,7 @@
     margin: 0;
     padding: 0;
   }
+
   textarea {
     resize: vertical;
   }
@@ -35,22 +36,20 @@
   input[type="button"],
   input[type="submit"],
   input[type="reset"] {
+    appearance: none;
     background: transparent;
     border: 0;
     color: inherit;
     font: inherit;
+    -webkit-font-smoothing: antialiased;
     margin: 0;
     padding: 0;
-    width: auto;
-    -webkit-appearance: none;
-    -webkit-font-smoothing: antialiased;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
+    width: auto;
+
     &::-moz-focus-inner {
-      padding: 0;
       border: 0;
+      padding: 0;
     }
   }
 }
@@ -60,6 +59,7 @@
   p:first-of-type {
     margin-top: 0;
   }
+
   p:last-of-type {
     margin-bottom: 0;
   }
@@ -69,8 +69,8 @@
 @mixin reset-media {
   img,
   video {
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
   }
 }
 

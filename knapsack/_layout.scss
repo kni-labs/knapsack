@@ -9,9 +9,9 @@
 
 @mixin clearfix() {
   &:after {
-    content: "";
-    display: table;
     clear: both;
+    content: '';
+    display: table;
   }
 }
 
@@ -25,12 +25,12 @@
 // Mixin: Ratio Box
 // Set a specific width/height ratio. Useful on background images and iframes.
 
-@mixin ratio-box ($ratio: 1/1) {
+@mixin ratio-box ($ratio: 1 / 1) {
   overflow: hidden;
   position: relative;
 
   &:before {
-    content: "";
+    content: '';
     display: block;
     height: 0;
     padding-top: (1 / $ratio) * 100%;
@@ -42,12 +42,12 @@
 // Sets an element to be full viewport height, with reasonble min and max-height
 // values.
 
-@mixin full-page($height: 100vh, $min-height: 600px, $max-height: 850px) {
+@mixin full-page($height: 100vh, $max-height: 850px, $min-height: 600px) {
   // Only show for tablet and above
   @media screen and (min-width: 768px) {
-    min-height: $min-height;
-    max-height: $max-height;
     height: $height;
+    max-height: $max-height;
+    min-height: $min-height;
   }
 }
 

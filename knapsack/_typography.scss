@@ -17,8 +17,8 @@
   li {
     float: none;
     list-style-type: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 }
 
@@ -36,8 +36,8 @@
 
   li {
     float: left;
-    margin-right: $spacing;
     list-style-type: none;
+    margin-right: $spacing;
   }
 
   li:last-child {
@@ -56,13 +56,11 @@
 // ex. @include default-list('decimal');
 
 @mixin text-list($style: 'disc') {
-  margin: 5px 15px;
-  margin: 0.32rem 0.94rem;
+  margin: .32rem .94rem;
   padding-left: 1rem;
 
   li {
     list-style-type: unquote($style);
-    padding: 2px 0;
-    padding: 0.125rem;
+    padding: .125rem 0;
   }
 }
