@@ -1,0 +1,97 @@
+// Some animation defaults
+
+$animation-duration: .65s;
+$animation-easing: ease-out;
+
+// Mixin Animated
+//
+// Sets the main animation properties. Used in initialize-animation
+
+@mixin animated() {
+  animation-timing-function: $animation-easing;
+  animation-duration: $animation-duration;
+  animation-fill-mode: both;
+}
+
+// Animation: Fade In
+//
+// Fades in element using opacity.
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1;}
+}
+
+@mixin fade-in() {
+  animation-name: fade-in;
+}
+
+// Animation: Fade In Up
+//
+// Fades in opacity and moves element up on the Y axis.
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translate3d(0, 15%, 0); }
+  100% { opacity: 1; transform: none; }
+}
+
+@mixin fade-in-up() {
+  animation-name: fade-in-up;
+}
+
+// Animation: Fade In Down
+//
+// Fades in opacity and moves element down on the Y axis.
+
+@keyframes fade-in-down {
+  0% { opacity: 0; transform: translate3d(0, -15%, 0); }
+  100% { opacity: 1; transform: none; }
+}
+
+@mixin fade-in-down {
+  animation-name: fade-in-down;
+}
+
+// Animation: Over-scale
+//
+// Creates an elastic scaling up bigger than 100% then resting to
+// 100% size.
+
+@keyframes over-scale {
+  0% {  opacity: 0; transform: scale(0);  }
+  70% { transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1);  }
+}
+
+@mixin over-scale() {
+  animation-name: over-scale;
+}
+
+// Additive Mixin: Initialize animation
+//
+// Warning: Creates classes in your css and styles them - not to be used inside
+// an element. Put this on your document root to get the animation goods.
+//
+// ex: @include initialize-animation(20);
+
+@mixin initialize-animation($max-delay-classes: 20) {
+  // Needed for every element that you want to animate
+  .animated { @include animated(); }
+
+  // Individual animations
+  .fade-in { @include fade-in(); }
+  .fade-in-up { @include fade-in-up(); }
+  .fade-in-down { @include fade-in-down(); }
+  .over-scale { @include over-scale(); }
+
+  // Loop to create delay classes
+  //
+  // Creates .delay-1 .delay-2 .delay-3
+
+  @for $i from 1 through $max-delay-classes {
+    $delay: $i * .1s;
+
+    .delay-#{$i} {
+      animation-delay: $delay;
+    }
+  }
+}
