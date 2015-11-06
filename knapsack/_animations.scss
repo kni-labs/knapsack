@@ -1,11 +1,27 @@
 // Some animation defaults
 
+/// Sets default duration for animations.
+///
+/// @group animation
+/// @type Number (Time)
+/// @todo move to settings file?
+
 $animation-duration: .65s;
+
+/// Sets default duration for animations.
+///
+/// @group animation
+/// @type Easing function
+
 $animation-easing: ease-out;
 
-// Mixin Animated
-//
-// Sets the main animation properties. Used in initialize-animation
+
+//- Mixin: Animated
+///
+/// Sets the main animation properties. Used in initialize-animation
+///
+/// @group animation
+/// @see initialize-animation
 
 @mixin animated() {
   animation-timing-function: $animation-easing;
@@ -13,65 +29,89 @@ $animation-easing: ease-out;
   animation-fill-mode: both;
 }
 
-// Animation: Fade In
-//
-// Fades in element using opacity.
+// Fade-in Keyframes
 @keyframes fade-in {
   0% { opacity: 0; }
   100% { opacity: 1;}
 }
 
+//- Mixin: Fade-in
+///
+/// Fades in element using opacity.
+///
+/// @group animation
+/// @see initialize-animation
+
 @mixin fade-in() {
   animation-name: fade-in;
 }
 
-// Animation: Fade In Up
-//
-// Fades in opacity and moves element up on the Y axis.
 
+// Fade-in Keyframes
 @keyframes fade-in-up {
   0% { opacity: 0; transform: translate3d(0, 15%, 0); }
   100% { opacity: 1; transform: none; }
 }
 
+//- Mixin: Fade in up
+///
+/// Fades in opacity and moves element up on the Y axis.
+///
+/// @group animation
+/// @see initialize-animation
+
 @mixin fade-in-up() {
   animation-name: fade-in-up;
 }
 
-// Animation: Fade In Down
-//
-// Fades in opacity and moves element down on the Y axis.
-
+// Fade-in-down Keyframes
 @keyframes fade-in-down {
   0% { opacity: 0; transform: translate3d(0, -15%, 0); }
   100% { opacity: 1; transform: none; }
 }
 
+//- Mixin: Fade in down
+///
+/// Fades in opacity and moves element up on the Y axis.
+///
+/// @group animation
+/// @see initialize-animation
+
 @mixin fade-in-down {
   animation-name: fade-in-down;
 }
 
-// Animation: Over-scale
-//
-// Creates an elastic scaling up bigger than 100% then resting to
-// 100% size.
-
+// Over-scale Keyframes
 @keyframes over-scale {
-  0% {  opacity: 0; transform: scale(0);  }
+  0% { opacity: 0; transform: scale(0);  }
   70% { transform: scale(1.1); }
   100% { opacity: 1; transform: scale(1);  }
 }
+
+
+//- Mixin: Over-scale
+///
+/// Creates an elastic scaling up bigger than 100% then resting to
+/// 100% size.
+///
+/// @group animation
+/// @see initialize-animation
 
 @mixin over-scale() {
   animation-name: over-scale;
 }
 
-// Additive Mixin: Initialize animation
-//
-// Warning: Creates classes in your css and styles them - not to be used inside
-// an element. Put this on your document root to get the animation goods.
-//
-// ex: @include initialize-animation(20);
+//- Additive Mixin: Initialize animation
+///
+/// Put this on your document root to get a few nice animations.
+/// *Warning*: Creates classes in your css and styles them - not to be used inside
+/// an element.
+///
+/// @param {variable} $$max-delay-classes [20] - Number of delay classes
+/// (`.delay-01`, `.delay-02`, `.delay-03`) that will be rendered.
+/// @group animation
+/// @example
+///   @include initialize-animation();
 
 @mixin initialize-animation($max-delay-classes: 20) {
   // Needed for every element that you want to animate
@@ -86,7 +126,6 @@ $animation-easing: ease-out;
   // Loop to create delay classes
   //
   // Creates .delay-1 .delay-2 .delay-3
-
   @for $i from 1 through $max-delay-classes {
     $delay: $i * .1s;
 

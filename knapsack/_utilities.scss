@@ -2,24 +2,36 @@
 // Utilities
 // ----
 
-// Function: Rem Calculator
-//
-// Calculates and returns the rem value based on px input. Default base font
-// size is 16px, but can be changed with $base-font-size.
-//
-// ex       : rem(30px) or rem(30)
-// returns  : 1.875rem
+//- Function: Rem Calculator
+///
+/// Calculates and returns the rem value based on px input. Default base font
+/// size is 16px, but can be changed with a global `$base-font-size` variable.
+///
+/// @param {variable} $size - Size in pixels
+///
+/// @group utilities
+/// @example
+///   font-size: rem(30px);
+///   // returns font-size: 1.875rem;
 
 @function rem($size) {
+  $base-font-size: 16px !default;
   $rem-size: $size / $base-font-size;
   @return #{$rem-size}rem;
 }
 
-
-// Function: Strip Unit
-
-// Sometimes it's just easier to do calculations with the unit's stripped.
-// read more here: https://css-tricks.com/snippets/sass/strip-unit-function/
+//- Function: Strip Unit
+///
+/// Sometimes it's just easier to do calculations with the unit is stripped.
+///
+/// @param {number} $number - Number that has a unit
+///
+/// @group utilities
+/// @example
+///   $length: 42px;
+///   $value: strip-unit($length);
+///   // -> 42
+/// @link https://css-tricks.com/snippets/sass/strip-unit-function/
 
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
@@ -28,15 +40,20 @@
   @return $number;
 }
 
-// Mixin: Debug
-//
-// Debugging tool - adds a border to the current element, its children,
-// grandchildren, etc so you can see what's up – great for precise layout
-// tweaks.  It will also add flags if you made mistakes like put in inline
-// styles, forgot an alt on an image, left the alt blank, etc. Not to be used
-// in production, obviously.
-//
-// View demo: http://codepen.io/dbox/pen/GJZzYo?editors=110
+//- Mixin: Debug
+///
+/// Debugging tool - adds a border to the current element, its children,
+/// grandchildren, etc so you can see what's up – great for precise layout
+/// tweaks.  It will also add flags if you made mistakes like put in inline
+/// styles, forgot an alt on an image, left the alt blank, etc. Not to be used
+/// in production, obviously.
+///
+/// @group utilities
+/// @example
+///   .container-elment {
+///     @include debug();
+///   }
+/// @link http://codepen.io/dbox/pen/GJZzYo?editors=110
 
 @mixin debug() {> * {  border: 1px solid green;} > * > * {border: 1px solid tomato; } > * > * > * { border: 1px solid DeepSkyBlue; } > * > * > * > * { border: 1px solid DeepPink; } > * > * > * > * > * { border: 1px solid MediumSlateBlue;}}
 
@@ -47,6 +64,24 @@
 //
 // ex. @include triangle()
 // ex. @include triangle('down', 15px, blue)
+
+//- Mixin: Triangle
+///
+/// Makes a little css triangle for you.
+///
+/// @param {variable} $direction [up] - Direction of the triangle: up, down left
+/// or right
+/// @param {variable} $size [10px] - Size of the triangle
+/// @param {variable} $color [#000] - Color of the triangle
+///
+/// @group utilities
+/// @example
+///   .element:after {
+///     @include triangle();
+///   }
+///   span {
+///     @include triangle(right, 8px, red);
+///   }
 
 @mixin triangle($direction:'up', $size:10px, $color:#000) {
   width: 0;

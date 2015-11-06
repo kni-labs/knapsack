@@ -2,32 +2,20 @@
 // Typography
 // ----
 
-// Mixin: Reset List
-//
-// If you're tired of all the list shenanigans and want to get rid of them for
-// this special list you're working on, this is your guy. Resets the margins,
-// padding, and style.
-//
-// ex. @include reset-list();
 
-@mixin reset-list() {
-  margin: 0;
-  padding: 0;
 
-  li {
-    float: none;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-}
-
-// Mixin: Inline List
-//
-// For when you need your list to be horizontal. Pass it the spacing you want
-// between list elements, whatever units you'd like. Defaults to 20px.
-//
-// ex. @include inline-list()
+//- Mixin: Inline List
+///
+/// For when you need your list to be horizontal.
+///
+/// @param {variable} $spacing [20px] - Amount of spacing between elements.
+/// can be whatever unit you like.
+///
+/// @group typography
+/// @example
+///   ul {
+///     @include inline-list();
+///   }
 
 @mixin inline-list($spacing: 20px) {
   @include clearfix();
@@ -45,15 +33,25 @@
   }
 }
 
-// Mixin: Text-list
-//
-// We tend to spend a great deal of time resetting all of the properties for
-// lists. This put them back to roughly the same state as browser defaults. You
-// can pass it any style that list-style-type would normally take:
-// http://www.w3schools.com/cssref/pr_list-style-type.asp
-//
-// ex. @include default-list();
-// ex. @include default-list('decimal');
+//- Mixin: Inline List
+///
+/// We tend to spend a great deal of time resetting all of the properties for
+/// lists. This puts them back to roughly the same state as browser defaults.
+/// You can pass it any option that [list-style-type]
+/// (http://www.w3schools.com/cssref/pr_list-style-type.asp) would normally
+/// take.
+///
+/// @param {variable} $style [disc] - Amount of spacing between elements.
+/// can be whatever unit you like.
+///
+/// @group typography
+/// @example
+///   ul {
+///     @include text-list();
+///   }
+///   ul {
+///     @include text-list('disc');
+///   }
 
 @mixin text-list($style: 'disc') {
   margin: .32rem .94rem;

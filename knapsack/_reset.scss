@@ -17,6 +17,27 @@
   }
 }
 
+// Mixin: Reset List
+//
+// If you're tired of all the list shenanigans and want to get rid of them for
+// this special list you're working on, this is your guy. Resets the margins,
+// padding, and style.
+//
+// ex. @include reset-list();
+
+
+@mixin reset-list() {
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 // Reset the forms
 @mixin reset-form {
   fieldset {
@@ -82,11 +103,12 @@
 }
 
 // Call them all
-@mixin reset-elements () {
-  @include reset-pointer;
-  @include reset-form;
+@mixin reset-elements() {
   @include reset-button;
-  @include reset-paragraph;
-  @include reset-media;
   @include reset-figure;
+  @include reset-form;
+  @include reset-list;
+  @include reset-media;
+  @include reset-paragraph;
+  @include reset-pointer;  
 }
