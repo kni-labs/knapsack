@@ -2,10 +2,13 @@
 // Layout
 // ----
 
-
-// Mixin: Clearfix
-//
-//ex. @include clearfix()
+//- Mixin: Clearfix
+///
+/// Just your standard clearfix.
+///
+/// @group layout
+/// @example
+///   @include clearfix();
 
 @mixin clearfix() {
   &:after {
@@ -15,17 +18,34 @@
   }
 }
 
-// Alias: cf
-// Clearfix but shorter.
+//- Alias: cf
+///
+/// @group layout
+/// @example
+///   @include cf();
+/// @alias clearfix
 
 @mixin cf() {
   @include clearfix();
 }
 
-// Mixin: Ratio Box
-// Set a specific width/height ratio. Useful on background images and iframes.
+//- Mixin: Ratio Box
+///
+/// This sets a specific width/height ratio. Useful on background images,
+/// iframes and Youtube embeds.
+///
+/// **note**: Any content inside `ratio-box` will need to be positioned
+/// absolutely as not to change the aspect-ratio.
+///
+/// @param {variable} $ratio [1 / 1] - Aspect ratio: height / width
+/// @group layout
+/// @example
+///   figure {
+///     @include ratio(16 / 9);
+///   }
+/// @link http://www.mademyday.de/css-height-equals-width-with-pure-css.html
 
-@mixin ratio-box ($ratio: 1 / 1) {
+@mixin ratio-box($ratio: 1 / 1) {
   overflow: hidden;
   position: relative;
 
@@ -37,10 +57,26 @@
   }
 }
 
-// Mixin: Full Page
+//- Mixin: Full Page
+///
+/// Create a responsive full page section with intelligent defaults.
+/// Resets on mobile.
+///
+/// @param {variable} $height [100vh] - Page height
+/// @param {variable} $max-height [850px] - Max page height
+/// @param {variable} $min-height [600px] - Min page height
+/// @group layout
+/// @example
+///   section {
+///     @include full-page();
+///   }
+///
+///   section {
+///     @include full-page(calc(100vh - 90px), 800px, 500px);
+///   }
+/// @link http://codepen.io/dbox/pen/OyzrrV
+/// @todo - Have mobile reset be optional
 
-// Sets an element to be full viewport height, with reasonble min and max-height
-// values.
 
 @mixin full-page($height: 100vh, $max-height: 850px, $min-height: 600px) {
   // Only show for tablet and above
@@ -56,6 +92,23 @@
 //
 // ex. @include vertically-align();
 
+//- Mixin: Vertically Align
+///
+/// Cross browser vertical align. Works down to IE9.
+///
+/// @param {variable} $reset [Null] - Pass `false` to reset override to original
+/// values
+/// @group layout
+/// @example
+///   article {
+///     @include vertically-align();
+///   }
+///
+///   h4 {
+///     @include vertically-align(false);
+///   }
+/// @link http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+
 @mixin vertically-align($reset : null) {
   @if ($reset != false) {
     position: relative;
@@ -66,4 +119,29 @@
     top: 0;
     transform: translateY(0);
   }
+}
+
+//- Mixin: Horizontal Rule
+///
+/// Clean reset for divider lines.
+///
+/// @param {variable} $color [rgba(#000, .15)] - Line color
+/// @param {variable} $spacing [1.5em] - Margin above and below the line
+///
+/// @group layout
+/// @example
+///   hr {
+///     @include rule();
+///   }
+///   hr.blue {
+///     @include rule(blue);
+///   }
+/// @todo - $border-width param
+
+@mixin rule($color: rgba(#000, .15), $spacing: 1.5em) {
+  border: 0;
+  border-bottom: 1px solid $color;
+  height: 0;
+  padding: 0;
+  margin: $spacing 0;
 }

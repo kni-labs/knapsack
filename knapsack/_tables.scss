@@ -2,15 +2,20 @@
 // Tables
 // ------
 
-// Mixin: Table
-//
-// Ported directly from Twitter Bootstrap, as they did an excellent job with
-// the tables. Take three fairly self-explanitory arguments, all boolean. 1st
-// makes the table bordered, 2nd adds zebra striping, and the 3rd indiated
-// whether the table is condensed or not.
-//
-// ex. table()
-// ex. table(striped: true)
+//- Mixin: Table
+///
+/// Ported directly from Twitter Bootstrap (by way of [Axis](axis.netlify.com)), as they did an
+/// excellent job with the tables.
+///
+/// @param {variable} $border [true] - Makes table bordered
+/// @param {variable} $striped [true] - Adds zebra striping
+/// @param {variable} $condensed [false] - Makes the table condensed
+/// @group table
+/// @example
+///   table {
+///     @include table();
+///   }
+/// @todo - make hover effect optional
 
 @mixin table($border : true, $striped : true, $condensed : false) {
   border-collapse: collapse;

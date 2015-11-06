@@ -1,2 +1,5 @@
+javascript:
+  enabled: false
+
 scss:
   config_file: .scss-style.yml

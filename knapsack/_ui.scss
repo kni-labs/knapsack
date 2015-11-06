@@ -2,13 +2,23 @@
 // Ui
 // ----
 
-// Mixin Button
-//
-// A starting place for button styling.
-//
-// ex: @include button(yellow, black);
+//- Mixin: Button
+///
+/// A starting place for button styling.
+///
+/// @param {variable} $background-color [#00BFFF] - Button background color
+/// @param {variable} $color [#FFF] - Button text color
+///
+/// @group ui
+/// @example
+///   a.btn {
+///     @include button();
+///   }
+///   a.yellow-button {
+///     @include button(yellow, black);
+///   }
 
-@mixin button($background-color: deepskyblue, $color: white) {
+@mixin button($background-color: #00BFFF, $color: #FFF) {
   $global-border-radius: 3px !default;
   padding: 10px 22px;
   border-radius: $global-border-radius;
@@ -25,19 +35,4 @@
   &:hover {
     background-color: darken($background-color, 10%);
   }
-}
-
-// Mixin: Horizontal Rule
-//
-// Clean reset for divider lines.
-//
-// ex: @include rule();
-// ex @include rule(blue);
-
-@mixin rule($color: rgba(#000, .15), $spacing: 1.5em) {
-  border: 0;
-  border-bottom: 1px solid $color;
-  height: 0;
-  padding: 0;
-  margin: $spacing 0;
 }
