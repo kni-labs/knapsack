@@ -1,4 +1,5 @@
 .pages/
 .sassdoc/
 node_modules/
+sassdoc/
 .DS_Store
