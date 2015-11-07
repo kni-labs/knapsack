@@ -1,7 +1,7 @@
 {
   "name": "knapsack",
-  "version": "0.1.0",
-  "description": "A Sass utility belt",
+  "version": "0.1.1",
+  "description": "A handy bag of sass utilities and mixins",
   "main": "knapsack/_index.scss",
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/kni-labs/knapsack/issues"
   },
-  "homepage": "https://github.com/kni-labs/knapsack#readme"
+  "homepage": "http://kni-labs.github.io/knapsack",
+  "dependencies": {
+    "sassdoc-theme-flippant": "0.x.x"
+  }
 }

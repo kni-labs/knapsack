@@ -1,2 +1,4 @@
 display:
   alias: true
+
+theme: node_modules/sassdoc-theme-flippant/
