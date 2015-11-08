@@ -1,19 +1,6 @@
-// Some animation defaults
-
-/// Sets default duration for animations.
-///
-/// @group animation
-/// @type Number (Time)
-/// @todo move to settings file?
-
-$animation-duration: .65s;
-
-/// Sets default duration for animations.
-///
-/// @group animation
-/// @type Easing function
-
-$animation-easing: ease-out;
+// ------
+// Animations
+// ------
 
 
 //- Mixin: Animated
@@ -21,7 +8,6 @@ $animation-easing: ease-out;
 /// Sets the main animation properties. Used in initialize-animation
 ///
 /// @group animation
-/// @see initialize-animation
 
 @mixin animated() {
   animation-timing-function: $animation-easing;
@@ -112,6 +98,7 @@ $animation-easing: ease-out;
 /// @group animation
 /// @example
 ///   @include initialize-animation();
+/// @link http://codepen.io/dbox/pen/ZboVOg
 
 @mixin initialize-animation($max-delay-classes: 20) {
   // Needed for every element that you want to animate

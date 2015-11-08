@@ -15,7 +15,6 @@
 ///   // returns font-size: 1.875rem;
 
 @function rem($size) {
-  $base-font-size: 16px !default;
   $rem-size: $size / $base-font-size;
   @return #{$rem-size}rem;
 }

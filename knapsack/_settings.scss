@@ -1,0 +1,43 @@
+// Some animation defaults
+
+/// Sets default duration for animations.
+///
+/// @group settings
+/// @type Number (Time)
+
+$animation-duration: .65s !default;
+
+/// Sets default duration for animations.
+///
+/// @group settings
+/// @type Easing function
+
+$animation-easing: ease-out !default;
+
+/// Sets the base font size for rem calculations;
+///
+/// @group settings
+/// @type Number (px)
+$base-font-size: 16px !default;
+
+
+// Colors via Material design
+// http://www.google.com/design/spec/style/color.html#color-color-palette
+
+$red:         #F44336 !default;
+$pink:        #E91E63 !default;
+$purple:      #9C27B0 !default;
+$deep-purple: #673AB7 !default;
+$indigo:      #3F51B5 !default;
+$blue:        #2196F3 !default;
+$light-blue:  #03A9F4 !default;
+$cyan:        #00BCD4 !default;
+$teal:        #009688 !default;
+$green:       #4CAF50 !default;
+$light-green: #8BC34A !default;
+$lime:        #CDDC39 !default;
+$orange:      #FF9800 !default;
+$deep-orange: #FF5722 !default;
+$brown:       #795548 !default;
+$grey:        #9E9E9E !default;
+$blue-gray:   #607D8B !default;

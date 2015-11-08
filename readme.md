@@ -11,7 +11,7 @@ This library is in early development and new mixins will be added quickly,  but 
 - import `knapsack/index` into your css pipeline
 
 ## Documentation
-Full documenation is [**here**](http://kni-labs.github.io/knapsack/).
+Full documentation is [**here**](http://kni-labs.github.io/knapsack/).
 
 ## Contributing
 ### Linting / Testing
@@ -20,7 +20,10 @@ Scss Linting is provided by [**scss-lint**] ([https://github.com/brigade/scss-li
 - Run the test: `scss-lint knapsack -c .scss-style.yml`
 
 ### Publish Docs
-All mixins/functions need to be formatted for [Sassdoc] ([http://sassdoc.com/annotations/](http://sassdoc.com/annotations/)) so that the [docs] ([http://kni-labs.github.io/knapsack/](http://kni-labs.github.io/knapsack/)) can be auto-generated. To update docs: `npm install` `sassdocify knapsack` `cd .pages && git push -uf origin gh-pages`
+All mixins/functions need to be formatted for [Sassdoc] ([http://sassdoc.com/annotations/](http://sassdoc.com/annotations/)) so that the [docs] ([http://kni-labs.github.io/knapsack/](http://kni-labs.github.io/knapsack/)) can be auto-generated. To update docs:
+- `npm install`  
+- `sassdocify knapsack`  
+- `cd .pages && git push -uf origin gh-pages`
 
 ## Credits
 Several mixins ported and adapted from the incredible [Axis Stylus Library](http://www.github.com/jenius/axis/) and a resets are from [scut](https://github.com/davidtheclark/scut).
