@@ -62,3 +62,25 @@
     padding: .125rem 0;
   }
 }
+
+//- Mixin: Ellipsis
+///
+// Truncate text to the width of its container...
+///
+/// @param {variable} $width [100%] - Width of the container
+/// can be whatever unit you like.
+///
+/// @group typography
+/// @example
+///   h3 {
+///     @include ellipsis();
+///   }
+
+@mixin ellipsis($width: 100%) {
+  white-space: nowrap;
+  display: inline-block;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+}

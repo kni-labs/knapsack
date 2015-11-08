@@ -17,6 +17,15 @@
   }
 }
 
+// Border box is just better.
+@mixin reset-border-box {
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+}
 // Mixin: Reset List
 //
 // If you're tired of all the list shenanigans and want to get rid of them for
@@ -104,11 +113,12 @@
 
 // Call them all
 @mixin reset-elements() {
+  @include reset-border-box;
   @include reset-button;
   @include reset-figure;
   @include reset-form;
   @include reset-list;
   @include reset-media;
   @include reset-paragraph;
-  @include reset-pointer;  
+  @include reset-pointer;
 }
