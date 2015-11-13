@@ -6,7 +6,7 @@
 ///
 /// For when you need your list to be horizontal.
 ///
-/// @param {variable} $spacing [20px] - Amount of spacing between elements.
+/// @param {variable} $spacing [20px] - Amount of spacing between elements -
 /// can be whatever unit you like.
 ///
 /// @group typography
@@ -81,4 +81,33 @@
   overflow: hidden;
   text-overflow: ellipsis;
   word-wrap: normal;
+}
+
+
+//- Mixin: Fluid Type
+///
+/// Magic calc + vh combo to allow text to be fluid between minimum
+/// and maximum breakpoints.
+///
+/// @group typography
+/// @param {variable} $min-font-size [12px] - Minimum font size
+/// @param {variable} $max-font-size [24px] - Maximum font size
+/// @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution
+/// @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution
+/// @example
+///   h1 {
+///     @include fluid-type(20px, 48px);
+///   }
+/// @link http://codepen.io/dbox/pen/meaMba
+
+@mixin fluid-type($min-font-size: 12px, $max-font-size: 21px, $lower-range: 420px, $upper-range: 900px) {
+
+  font-size: calc(#{$min-font-size} + #{(($max-font-size / ($max-font-size * 0 + 1)) - ($min-font-size / ($min-font-size * 0 + 1)))} * ( (100vw - #{$lower-range}) / #{(($upper-range / ($upper-range * 0 + 1)) - ($lower-range / ($lower-range * 0 + 1)))}));
+
+  @media screen and (max-width: $lower-range) {
+    font-size: $min-font-size;
+  }
+  @media screen and (min-width: $upper-range){
+    font-size: $max-font-size;
+  }
 }
