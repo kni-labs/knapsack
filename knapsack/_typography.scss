@@ -83,6 +83,27 @@
   word-wrap: normal;
 }
 
+//- Mixin: Reset List
+///
+///  Resets the margins padding, and styles to list.
+///
+/// @group typography
+///   ul {
+///     @include reset-list();
+///   }
+
+@mixin reset-list() {
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 
 //- Mixin: Fluid Type
 ///
