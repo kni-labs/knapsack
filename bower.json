@@ -21,7 +21,7 @@
     ".pages",
     ".hound.yml",
     ".sassdocrc",
-    ".scss-style.yml"
+    ".scss-style.yml",
     "test",
     "tests"
   ]
