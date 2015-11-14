@@ -18,6 +18,10 @@
     "**/.*",
     "node_modules",
     "bower_components",
+    ".pages",
+    ".hound.yml",
+    ".sassdocrc",
+    ".scss-style.yml"
     "test",
     "tests"
   ]

@@ -14,16 +14,15 @@ This library is in early development and new mixins will be added quickly,  but 
 Full documentation is [**here**](http://kni-labs.github.io/knapsack/).
 
 ## Contributing
-### Linting / Testing
-Scss Linting is provided by [**scss-lint**] ([https://github.com/brigade/scss-lint](https://github.com/brigade/scss-lint)). Let's keep that code tidy.
-- Install: `gem install scss-lint`
-- Run the test: `scss-lint knapsack -c .scss-style.yml`
+1. Clone/fork the repo:
+2. Install dependencies:  `npm install`
+3. Install linter: `gem install scss-lint`
+4. Add/edit scss in `/knapsack`
+5. Add comments to code following [Sassdoc format](http://sassdoc.com/annotations/)
+6. Run linter: `scss-lint knapsack -c .scss-style.yml`
+7. Create pull request
 
-### Publish Docs
-All mixins/functions need to be formatted for [Sassdoc] ([http://sassdoc.com/annotations/](http://sassdoc.com/annotations/)) so that the [docs] ([http://kni-labs.github.io/knapsack/](http://kni-labs.github.io/knapsack/)) can be auto-generated. To update docs:
-- `npm install`  
-- `sassdocify knapsack`  
-- `cd .pages && git push -uf origin gh-pages`
+(Publishing instructions for contributors [here](https://gist.github.com/dbox/57a572101658659ce120))
 
 ## Credits
 Several mixins ported and adapted from the incredible [Axis Stylus Library](http://www.github.com/jenius/axis/) and a resets are from [scut](https://github.com/davidtheclark/scut).
