@@ -2,7 +2,6 @@
 // Animations
 // ------
 
-
 //- Mixin: Animated
 ///
 /// Sets the main animation properties. Used in initialize-animation
@@ -13,12 +12,6 @@
   animation-timing-function: $animation-easing;
   animation-duration: $animation-duration;
   animation-fill-mode: both;
-}
-
-// Fade-in Keyframes
-@keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1;}
 }
 
 //- Mixin: Fade-in
@@ -32,13 +25,6 @@
   animation-name: fade-in;
 }
 
-
-// Fade-in Keyframes
-@keyframes fade-in-up {
-  0% { opacity: 0; transform: translate3d(0, 15%, 0); }
-  100% { opacity: 1; transform: none; }
-}
-
 //- Mixin: Fade in up
 ///
 /// Fades in opacity and moves element up on the Y axis.
@@ -48,12 +34,6 @@
 
 @mixin fade-in-up() {
   animation-name: fade-in-up;
-}
-
-// Fade-in-down Keyframes
-@keyframes fade-in-down {
-  0% { opacity: 0; transform: translate3d(0, -15%, 0); }
-  100% { opacity: 1; transform: none; }
 }
 
 //- Mixin: Fade in down
@@ -66,14 +46,6 @@
 @mixin fade-in-down {
   animation-name: fade-in-down;
 }
-
-// Over-scale Keyframes
-@keyframes over-scale {
-  0% { opacity: 0; transform: scale(0);  }
-  70% { transform: scale(1.1); }
-  100% { opacity: 1; transform: scale(1);  }
-}
-
 
 //- Mixin: Over-scale
 ///
@@ -101,6 +73,29 @@
 /// @link http://codepen.io/dbox/pen/ZboVOg
 
 @mixin initialize-animation($max-delay-classes: 20) {
+  // Render Keyframes
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translate3d(0, 15%, 0); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  @keyframes fade-in-down {
+    0% { opacity: 0; transform: translate3d(0, -15%, 0); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  @keyframes over-scale {
+    0% { opacity: 0; transform: scale(0);  }
+    70% { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1);  }
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1;}
+  }
+
+
   // Needed for every element that you want to animate
   .animated { @include animated(); }
 
