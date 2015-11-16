@@ -13,6 +13,9 @@ This library is in early development and new mixins will be added quickly,  but 
 ## Documentation
 Full documentation is [**here**](http://kni-labs.github.io/knapsack/).
 
+## Codepen Sandbox
+Experiment with the latest version of Knapsack [on Codepen](http://codepen.io/dbox/pen/zveWGg).
+
 ## Contributing
 1. Clone/fork the repo:
 2. Install dependencies:  `npm install`
