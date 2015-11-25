@@ -1,0 +1,172 @@
+
+//- Mixin: Select-box
+///
+/// Styling select boxes is the worst. Hopefully this makes life a little
+/// easier. Automagically colors elements based on luminance of the backbground
+/// color. Pass it a custom arrow image, or use a handy css-only triangle by
+/// default. Must be called on an element that wraps the select. Works with
+/// Safari, Chrome, Firefox, and IE10+.
+///
+/// @param {variable} $bg-color [#FFF] - default background-color
+/// @param {variable} $border-radius [.2em] - border radius
+/// @param {variable} $arrow-image [null] - Custom image for the dropdown
+/// @param {variable} $arrow-size [6px] - Size of arrow image (change if image
+/// provided)
+/// @param {variable} $focus-glow [#B4DEFA] - Sets a glow around the dropdown
+/// when focused. Remove with 'null'
+/// @param {variable} $text-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $bg-hover-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $border-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $border-hover-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @group forms
+/// @example
+///   .select-wrapper {
+///     @include select-box();
+///   }
+///
+///   .select-wrapper {
+///    @include select-box(#efefef, 0px, $arrow-size: 15px, $arrow-image: "http://dbox.us/_img/sample-arrow.png")
+///   }
+/// @link http://codepen.io/dbox/pen/YyBdog
+
+@mixin select-box ($bg-color: #FFF, $border-radius: .2em, $arrow-image: null, $arrow-size: 6px, $focus-glow: #B4DEFA, $text-color: null, $bg-hover-color: null, $border-color: null, $border-hover-color: null) {
+  // Detect if bg color is dark or light, then serve some intelligent defaults based that color
+  // todo: make more terse
+
+  // tolerance for changing the color
+  $l-tolerance: .65;
+
+  @if ($text-color) {
+    $text-color: $text-color;
+  } @else {
+    $text-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .7));
+  }
+  @if ($bg-hover-color) {
+    $bg-hover-color: $bg-hover-color;
+  } @else {
+    $bg-hover-color: if(luminance($bg-color) < $l-tolerance, darken($bg-color, 10%), $bg-color);
+  }
+  @if ($border-color) {
+    $border-color: $border-color;
+  } @else {
+    $border-color: if(luminance($bg-color) < $l-tolerance, $bg-color, rgba(#000, .25));
+  }
+  @if ($border-hover-color) {
+    $border-color: $border-hover-color;
+  } @else {
+    $border-hover-color: if(luminance($bg-color) < $l-tolerance, $bg-hover-color, rgba(#000, .45));
+  }
+  $arrow-color: if(luminance($bg-color) < $l-tolerance, rgba(255,255,255, .9), rgba(#000, .25));
+  $arrow-hover-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .45));
+
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  display: block;
+  padding: 0;
+  position: relative;
+  background: $bg-color;
+  color: $text-color;
+  transition: all .2s ease;
+
+  select {
+    appearance: none;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    color: inherit;
+    font-size: 1em;
+    line-height: 1.3;
+    margin: 0;
+    outline: none;
+    padding: .3em 1.9em .5em .8em;
+    transition: all .2s ease;
+    width: 100%;
+
+    &:focus {
+      background-color: transparent;
+      border: 1px solid $border-hover-color;
+      outline: none;
+      @if ($focus-glow) {
+        box-shadow: 0 0 3px 3px $focus-glow;
+      }
+    }
+  }
+
+  &:after {
+    content: '';
+    height: $arrow-size;
+    margin-top: -.25em;
+    pointer-events: none;
+    position: absolute;
+    right: .7em;
+    top: 50%;
+    width: $arrow-size;
+    z-index: 2;
+
+    @if ($arrow-image) {
+      background-image: url($arrow-image);
+      background-position: right center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      margin-top: calc(#{$arrow-size} / 1.75 * -1);
+    } @else {
+      border-left: $arrow-size solid transparent;
+      border-right: $arrow-size solid transparent;
+      border-top: $arrow-size solid $arrow-color;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  &:hover {
+    background: $bg-hover-color;
+    border: 1px solid $border-hover-color;
+
+    &:after {
+      @if not ($arrow-image) {
+        border-top: $arrow-size solid $arrow-hover-color;
+      }
+    }
+  }
+
+  option {
+    font-weight: normal;
+  }
+
+  // Some browser hacks ---------
+
+  // Firefox
+  @-moz-document url-prefix() {
+    overflow: hidden;
+
+    select {
+      width: 120%;
+      width: -moz-calc(100% + 3em);
+      width: calc(100% + 3em);
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+    }
+  }
+
+  // IE10-11
+  select {
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:focus::-ms-value {
+      background: transparent;
+      color: #222;
+    }
+  }
+  // Note: opera support is possible, but needs some hacks outside of mixin:
+  // http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7 */
+}

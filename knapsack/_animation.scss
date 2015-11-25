@@ -5,6 +5,7 @@
 /// CSS cubic-bezier timing functions ported from Bourbon via jquery.easie (github.com/jaukia/easie)
 ///
 /// @group animation
+/// @type cubic-bezier
 /// @link http://jqueryui.com/resources/demos/effect/easing.html
 
 $ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
@@ -101,7 +102,7 @@ $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
 /// *Warning*: Creates classes in your css and styles them - not to be used inside
 /// an element.
 ///
-/// @param {variable} $$max-delay-classes [20] - Number of delay classes
+/// @param {variable} $max-delay-classes [20] - Number of delay classes
 /// (`.delay-01`, `.delay-02`, `.delay-03`) that will be rendered.
 /// @group animation
 /// @example
