@@ -65,6 +65,8 @@
 /// @param {variable} $height [100vh] - Page height
 /// @param {variable} $max-height [850px] - Max page height
 /// @param {variable} $min-height [600px] - Min page height
+/// @param {variable} $breakpoint [768px] - Disable below this size or pass
+/// 'null' to not use a breakpoint.
 /// @group layout
 /// @example
 ///   section {
@@ -75,12 +77,18 @@
 ///     @include full-page(calc(100vh - 90px), 800px, 500px);
 ///   }
 /// @link http://codepen.io/dbox/pen/OyzrrV
-/// @todo - Have mobile reset be optional
 
 
-@mixin full-page($height: 100vh, $max-height: 850px, $min-height: 600px) {
-  // Only show for tablet and above
-  @media screen and (min-width: 768px) {
+@mixin full-page($height: 100vh, $max-height: 850px, $min-height: 600px, $breakpoint: 768px) {
+  // Disable below set breakpoint
+  @if ($breakpoint) {
+    @media screen and (min-width: $breakpoint) {
+      height: $height;
+      max-height: $max-height;
+      min-height: $min-height;
+    }
+  // Show for all sizes
+  } @else {
     height: $height;
     max-height: $max-height;
     min-height: $min-height;
