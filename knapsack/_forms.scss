@@ -170,3 +170,62 @@
   // Note: opera support is possible, but needs some hacks outside of mixin:
   // http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7 */
 }
+
+//- Mixin: Radio
+///
+/// A simple reset for radio button styling across browsers. Note must be used
+/// on the <label> which wraps your radio inputs.
+///
+/// @param {variable} $color [#0074D9] - active radio button color
+/// @param {variable} $size [1em] - size of the radio button
+/// @group forms
+/// @example
+///   label {
+///     @include radio();
+///   }
+/// @link http://codepen.io/dbox/pen/gPPqEp
+
+@mixin radio($color: #0074D9, $size: 1em) {
+  $border-size: $size / 8;
+  cursor: pointer;
+  display: block;
+  line-height: 2.5em;
+
+  // Accessible hidden styles
+  [type="radio"] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    + span {
+      display: block;
+    }
+
+    // Unchecked
+    + span:before {
+      background: rgba(#000, .15);
+      border: $border-size solid #FFF;
+      border-radius: 1em;
+      box-shadow: 0 0 0 .1em rgba(#000, .25);
+      content: '';
+      display: inline-block;
+      height: $size;
+      margin-right: $size / 1.5;
+      transition: all 0.25s ease-out;
+      vertical-align: $size / -3.5;
+      width: $size;
+    }
+
+    // Checked
+    &:checked + span:before,
+    &:focus + span:before {
+      background: $color;
+      box-shadow: 0 0 0 0.25em rgba(#000, .15);
+    }
+  }
+}
