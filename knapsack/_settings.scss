@@ -23,7 +23,6 @@ $base-font-size: 16px !default;
 
 // Color Resets via Material design
 // http://www.google.com/design/spec/style/color.html#color-color-palette
-
 $red:         #F44336 !default;
 $pink:        #E91E63 !default;
 $purple:      #9C27B0 !default;
@@ -41,8 +40,13 @@ $deep-orange: #FF5722 !default;
 $brown:       #795548 !default;
 $grey:        #9E9E9E !default;
 $blue-gray:   #607D8B !default;
+
+
+/// Base gray - tweak this to add slight color tint to the grayscale, then base all grays off this color. If you want flat gray use #888888
+///
+/// @group settings
+/// @type Color (hex)
 $base-gray:   #707f8c !default;
 
 // Colors by use
-
 $color-primary: $blue !default;
