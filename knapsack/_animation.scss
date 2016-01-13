@@ -38,86 +38,37 @@ $ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.150, 0.860);
 $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
 
-/// Sets default easing for animations.
-///
-/// @group animation
-/// @type Easing function
-
-$animation-easing: $ease-out-quad !default;
-
 
 //- Mixin: Animated
 ///
-/// Sets the main animation properties. Used in initialize-animation
+/// Sets the main animation properties. Optionally, we have a very basic set of custom animtions that can be passed. Note you must call initialize-animation mixin on root of your document to enable the keyframes;
 ///
+/// @param {variable} $animation-name [null] -  Currently available animation names: 'fade-in', 'fade-in-up', 'fade-in-down', 'over-scale'
+/// @param {variable} $animation-duration [.65s] -  How long animation takes
+/// @param {variable} $animation-easing [$ease-out-quad] -  Animation easing type
 /// @group animation
+/// @link http://codepen.io/dbox/pen/ZboVOg
 
-@mixin animated() {
+@mixin animated($animation-name: null, $animation-duration: .65s, $animation-easing: $ease-out-quad,) {
   animation-timing-function: $animation-easing;
   animation-duration: $animation-duration;
   animation-fill-mode: both;
-}
 
-//- Mixin: Fade-in
-///
-/// Fades in element using opacity.
-///
-/// @group animation
-/// @see initialize-animation
-
-@mixin fade-in() {
-  animation-name: fade-in;
-}
-
-//- Mixin: Fade in up
-///
-/// Fades in opacity and moves element up on the Y axis.
-///
-/// @group animation
-/// @see initialize-animation
-
-@mixin fade-in-up() {
-  animation-name: fade-in-up;
-}
-
-//- Mixin: Fade in down
-///
-/// Fades in opacity and moves element up on the Y axis.
-///
-/// @group animation
-/// @see initialize-animation
-
-@mixin fade-in-down {
-  animation-name: fade-in-down;
-}
-
-//- Mixin: Over-scale
-///
-/// Creates an elastic scaling up bigger than 100% then resting to
-/// 100% size.
-///
-/// @group animation
-/// @see initialize-animation
-
-@mixin over-scale() {
-  animation-name: over-scale;
+  @if ($animation-name) {
+    animation-name: $animation-name;
+  }
 }
 
 //- Additive Mixin: Initialize animation
 ///
-/// Put this on your document root to get a few nice animations.
-/// *Warning*: Creates classes in your css and styles them - not to be used inside
-/// an element.
+/// Render the keyframes needed for animation mixin. Required to pass animation-names to `animated` mixin.
 ///
-/// @param {variable} $max-delay-classes [20] - Number of delay classes
-/// (`.delay-01`, `.delay-02`, `.delay-03`) that will be rendered.
 /// @group animation
 /// @example
 ///   @include initialize-animation();
 /// @link http://codepen.io/dbox/pen/ZboVOg
 
-@mixin initialize-animation($max-delay-classes: 20) {
-  // Render Keyframes
+@mixin initialize-animation() {
   @keyframes fade-in-up {
     0% { opacity: 0; transform: translate3d(0, 15%, 0); }
     100% { opacity: 1; transform: none; }
@@ -137,26 +88,5 @@ $animation-easing: $ease-out-quad !default;
   @keyframes fade-in {
     0% { opacity: 0; }
     100% { opacity: 1;}
-  }
-
-
-  // Needed for every element that you want to animate
-  .animated { @include animated(); }
-
-  // Individual animations
-  .fade-in { @include fade-in(); }
-  .fade-in-up { @include fade-in-up(); }
-  .fade-in-down { @include fade-in-down(); }
-  .over-scale { @include over-scale(); }
-
-  // Loop to create delay classes
-  //
-  // Creates .delay-1 .delay-2 .delay-3
-  @for $i from 1 through $max-delay-classes {
-    $delay: $i * .1s;
-
-    .delay-#{$i} {
-      animation-delay: $delay;
-    }
   }
 }
