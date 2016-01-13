@@ -181,3 +181,25 @@
     display: table-cell;
   }
 }
+
+//- Mixin: Absolute Center
+///
+/// Faster centering when your element has to be position: absolute;
+///
+/// @param {variable} $width [50%] - Width of your item
+///
+/// @group layout
+/// @example
+///   div {
+///     @include absolute-center(400px);
+///   }
+/// @link http://codepen.io/dbox/pen/vLgpqL
+
+@mixin absolute-center($width: 50%) {
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+  width: $width;
+}
