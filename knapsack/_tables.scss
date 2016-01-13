@@ -26,7 +26,7 @@
 
   th,
   td {
-    border-top: 1px solid #DDD;
+    border-top: 1px solid lighten($base-gray, 30%);
     line-height: 18px;
     padding: 8px;
     text-align: left;
@@ -47,7 +47,7 @@
   }
 
   tbody + tbody {
-    border-top: 2px solid #DDD;
+    border-top: 2px solid lighten($base-gray, 30%);
   }
 
   @if $condensed {
@@ -58,7 +58,7 @@
   }
 
   @if $border {
-    border: 1px solid #DDD;
+    border: 1px solid lighten($base-gray, 30%);
     border-collapse: separate;
     border-radius: 4px;
 
@@ -66,7 +66,7 @@
     td + td,
     th + td,
     td + th {
-      border-left: 1px solid #DDD;
+      border-left: 1px solid lighten($base-gray, 30%);
     }
 
     thead:first-child tr:first-child th,
@@ -99,12 +99,12 @@
   @if $striped {
     tbody tr:nth-child(odd) td,
     tbody tr:nth-child(odd) th {
-      background-color: #F9F9F9;
+      background-color: lighten($base-gray, 47%);
     }
   }
 
   tbody tr:hover td,
   tbody tr:hover th {
-    background-color: #F5F5F5;
+    background-color: lighten($base-gray, 47%);
   }
 }

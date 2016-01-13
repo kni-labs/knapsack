@@ -18,7 +18,7 @@
 ///     @include button(yellow, black);
 ///   }
 
-@mixin button($background-color: #00BFFF, $color: #FFF) {
+@mixin button($background-color: $color-primary, $color: #FFF) {
   $global-border-radius: 3px !default;
   padding: 10px 22px;
   border-radius: $global-border-radius;

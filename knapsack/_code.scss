@@ -14,11 +14,11 @@
 ///     @include code(blue);
 ///   }
 
-@mixin code($color : #DF5C33) {
+@mixin code($color : $color-primary) {
   padding: 3px 4px;
   color: $color;
-  background-color: #F5F5F5;
-  border: 1px solid #E1E1E8;
+  background-color: lighten($base-gray, 45%);
+  border: 1px solid lighten($base-gray, 35%);
   border-radius: 3px;
   font-family: Menlo, Monaco, monospace;
 }
@@ -36,8 +36,8 @@
 @mixin pre() {
   display: block;
   padding: 7px;
-  background-color: #F5F5F5;
-  border: 1px solid #E1E1E8;
+  background-color: lighten($base-gray, 45%);
+  border: 1px solid lighten($base-gray, 35%);
   border-radius: 3px;
   white-space: pre-wrap;
   word-break: break-all;

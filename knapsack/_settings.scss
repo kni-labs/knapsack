@@ -7,12 +7,12 @@
 
 $animation-duration: .65s !default;
 
-/// Sets default duration for animations.
+/// Sets default easing for animations.
 ///
 /// @group settings
 /// @type Easing function
 
-$animation-easing: ease-out !default;
+$animation-easing: $ease-out-quad !default;
 
 /// Sets the base font size for rem calculations;
 ///
@@ -21,7 +21,7 @@ $animation-easing: ease-out !default;
 $base-font-size: 16px !default;
 
 
-// Colors via Material design
+// Color Resets via Material design
 // http://www.google.com/design/spec/style/color.html#color-color-palette
 
 $red:         #F44336 !default;
@@ -41,3 +41,8 @@ $deep-orange: #FF5722 !default;
 $brown:       #795548 !default;
 $grey:        #9E9E9E !default;
 $blue-gray:   #607D8B !default;
+$base-gray:   #707f8c !default;
+
+// Colors by use
+
+$color-primary: $blue !default;
