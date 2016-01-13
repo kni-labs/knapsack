@@ -14,7 +14,7 @@ Knapsack only provides pure css as defined by the w3c spec any browser prefixing
 Full documentation is [**here**](http://kni-labs.github.io/knapsack/).
 
 ## Codepen Sandbox
-Experiment with the latest version of Knapsack [on Codepen](http://codepen.io/dbox/pen/zveWGg).
+Experiment with the latest version of Knapsack [on Codepen](http://codepen.io/dbox/pen/adyyVp).
 
 ## Contributing
 1. Clone/fork the repo:
