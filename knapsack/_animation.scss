@@ -49,7 +49,7 @@ $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
 /// @group animation
 /// @link http://codepen.io/dbox/pen/ZboVOg
 
-@mixin animated($animation-name: null, $animation-duration: .65s, $animation-easing: $ease-out-quad,) {
+@mixin animated($animation-name: null, $animation-duration: .65s, $animation-easing: $ease-out-quad) {
   animation-timing-function: $animation-easing;
   animation-duration: $animation-duration;
   animation-fill-mode: both;
