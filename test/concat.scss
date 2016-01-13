@@ -32,7 +32,7 @@ $blue-gray:   #607D8B !default;
 ///
 /// @group settings
 /// @type Color (hex)
-$base-gray:   #707f8c !default;
+$base-gray:   #707F8C !default;
 
 // Colors by use
 $color-primary: $blue !default;
@@ -361,7 +361,7 @@ $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
 /// @group animation
 /// @link http://codepen.io/dbox/pen/ZboVOg
 
-@mixin animated($animation-name: null, $animation-duration: .65s, $animation-easing: $ease-out-quad) {
+@mixin animated($animation-name: null, $animation-duration: .65s, $animation-delay: null, $animation-easing: $ease-out-quad) {
   animation-timing-function: $animation-easing;
   animation-duration: $animation-duration;
   animation-fill-mode: both;
@@ -369,6 +369,10 @@ $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
   @if ($animation-name) {
     animation-name: $animation-name;
   }
+  @if ($animation-delay) {
+    animation-delay: $animation-delay;
+  }
+
 }
 
 //- Additive Mixin: Initialize animation
