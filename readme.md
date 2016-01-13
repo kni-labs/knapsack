@@ -6,9 +6,10 @@ Knapsack only provides pure css as defined by the w3c spec any browser prefixing
 > **note**: This library is in early development and new mixins are being added quickly.  Breaking changes will follow [semver in development](http://markup.im/#q4_cRZ1Qs) until 1.0.
 
 ## Installation
+Currently there are 3 installation options:
 - With npm: `npm install knapsack`
 - With bower: `bower install knapsack`
-- import `knapsack/index` into your css pipeline
+- or manually import `knapsack/index` into your css pipeline
 
 ## Documentation
 Full documentation is [**here**](http://kni-labs.github.io/knapsack/).
