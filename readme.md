@@ -3,7 +3,7 @@ A handy bag of Sass mixins and utilities, and the Sass little brother to Stylus'
 
 Knapsack only provides pure css as defined by the w3c spec any browser prefixing  can and should be applied by [auto-prefixer](https://github.com/postcss/autoprefixer).
 
-> **note**: This library is in early development and new mixins are being added quickly, breaking changes will follow [semver in development](http://markup.im/#q4_cRZ1Qs) until 1.0.
+> **note**: This library is in early development and new mixins are being added quickly.  Breaking changes will follow [semver in development](http://markup.im/#q4_cRZ1Qs) until 1.0.
 
 ## Installation
 - With npm: `npm install knapsack`
