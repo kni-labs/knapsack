@@ -38,6 +38,13 @@ $ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.150, 0.860);
 $ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
 
+/// Sets default easing for animations.
+///
+/// @group animation
+/// @type Easing function
+
+$animation-easing: $ease-out-quad !default;
+
 
 //- Mixin: Animated
 ///
