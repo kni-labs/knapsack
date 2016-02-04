@@ -1,20 +1,21 @@
 # Knapsack
 A handy bag of Sass mixins and utilities, and the Sass little brother to Stylus's [Axis](http://www.github.com/jenius/axis/) Library.
 
-Knapsack only provides pure css as defined by the w3c spec any browser prefixing  can and should be applied by [auto-prefixer] ([https://github.com/postcss/autoprefixer](https://github.com/postcss/autoprefixer)).
+Knapsack only provides pure css as defined by the w3c spec any browser prefixing  can and should be applied by [auto-prefixer](https://github.com/postcss/autoprefixer).
 
-> **note**: This library is in early development and new mixins are being added quickly, breaking changes will follow [http://markup.im/#q4_cRZ1Q](semver in development) until 1.0.
+> **note**: This library is in early development and new mixins are being added quickly.  Breaking changes will follow [semver in development](http://markup.im/#q4_cRZ1Qs) until 1.0.
 
 ## Installation
+Currently there are 3 installation options:
 - With npm: `npm install knapsack`
 - With bower: `bower install knapsack`
-- import `knapsack/index` into your css pipeline
+- or manually import `knapsack/index` into your css pipeline
 
 ## Documentation
 Full documentation is [**here**](http://kni-labs.github.io/knapsack/).
 
 ## Codepen Sandbox
-Experiment with the latest version of Knapsack [on Codepen](http://codepen.io/dbox/pen/zveWGg).
+Experiment with the latest version of Knapsack [on Codepen](http://codepen.io/dbox/pen/adyyVp).
 
 ## Contributing
 1. Clone/fork the repo:
