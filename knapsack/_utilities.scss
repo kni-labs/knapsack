@@ -2,7 +2,27 @@
 // Utilities
 // ----
 
-//- Function: Rem Calculator
+/// Power function
+/// @param {Number} $x
+/// @param {Number} $n
+/// @return {Number}
+/// @group utilities
+/// @source https://github.com/adambom/Sass-Math/blob/master/math.scss Sass-Math
+@function pow($x, $n) {
+  $result: 1;
+
+  @if $n >= 0 {
+    @for $i from 1 through $n {
+        $result: $result * $x;
+    }
+  } @else {
+      @for $i from $n to 0 {
+        $result: $result / $x;
+      }
+    }
+  @return $result;
+}
+
 ///
 /// Calculates and returns the rem value based on px input. Default base font
 /// size is 16px, but can be changed with a global `$base-font-size` variable.
@@ -128,7 +148,7 @@
       $value: $value / 12.92;
     } @else {
       $value: ($value + .055) / 1.055;
-      $value: pow($value, 2.4);
+      $value: pow($value, 2);
     }
 
     $colors: map-merge($colors, ($name: $value));
