@@ -1,6 +1,6 @@
 {
   "name": "knapsack",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A handy bag of sass utilities and mixins",
   "main": "knapsack/_index.scss",
   "repository": {
