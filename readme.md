@@ -1,4 +1,6 @@
 # Knapsack
+[![npm version](https://badge.fury.io/js/knapsack.svg)](https://badge.fury.io/js/knapsack)
+
 A handy bag of Sass mixins and utilities, and the Sass little brother to Stylus's [Axis](http://www.github.com/jenius/axis/) Library.
 
 Knapsack only provides pure css as defined by the w3c spec any browser prefixing  can and should be applied by [auto-prefixer](https://github.com/postcss/autoprefixer).
