@@ -34,10 +34,8 @@
 /// This sets a specific width/height ratio. Useful on background images,
 /// iframes and Youtube embeds.
 ///
-/// **note**: Any content inside `ratio-box` will need to be positioned
-/// absolutely as not to change the aspect-ratio.
-///
 /// @param {variable} $ratio [1 / 1] - Aspect ratio: height / width
+/// @param {variable} $bg-color [$base-gray, .2] - placeholder background color
 /// @group layout
 /// @example
 ///   figure {
@@ -45,9 +43,18 @@
 ///   }
 /// @link http://www.mademyday.de/css-height-equals-width-with-pure-css.html
 
-@mixin ratio-box($ratio: 1 / 1) {
+@mixin ratio-box($ratio: 1 / 1, $bg-color: rgba($base-gray, .15)) {
+  background-color: $bg-color;
   overflow: hidden;
   position: relative;
+
+  > * {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
 
   &:before {
     content: '';
@@ -77,7 +84,6 @@
 ///     @include full-page(calc(100vh - 90px), 800px, 500px);
 ///   }
 /// @link http://codepen.io/dbox/pen/OyzrrV
-
 
 @mixin full-page($height: 100vh, $max-height: 850px, $min-height: 600px, $breakpoint: 768px) {
   // Disable below set breakpoint
