@@ -34,9 +34,6 @@
 /// This sets a specific width/height ratio. Useful on background images,
 /// iframes and Youtube embeds.
 ///
-/// **note**: Any content inside `ratio-box` will need to be positioned
-/// absolutely as not to change the aspect-ratio.
-///
 /// @param {variable} $ratio [1 / 1] - Aspect ratio: height / width
 /// @param {variable} $bg-color [$base-gray, .2] - placeholder background color
 /// @group layout
