@@ -56,7 +56,7 @@
     width: 100%;
   }
 
-  &:before {
+  &::before {
     content: '';
     display: block;
     height: 0;
