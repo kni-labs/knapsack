@@ -241,6 +241,6 @@
     box-shadow: 0 rem(20px) rem(40px) rgba($color, $strength * 0.30), 0 rem(15px) rem(12px) rgba($color, $strength * 0.22);
   }
   @if ($z-depth < 1) or ($z-depth > 5) {
-    @warn "$z-depth must be between 1 and 5";
+    @warn '$z-depth must be between 1 and 5';
   }
 }
