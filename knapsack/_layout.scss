@@ -209,3 +209,38 @@
   right: 0;
   width: $width;
 }
+
+//- Mixin: Material Shadow
+///
+/// Box shadows based on 5 Material Design presets;
+///
+/// @param {variable} $z-depth [1] - shadow distance on z-axis
+/// @param {variable} $strength [1] - multiplier for shadow strength/darkness
+/// @param {variable} $color [1] - shadow color
+/// @group layout
+/// @example
+///   div {
+///     @include material-shadow(3);
+///   }
+/// @link http://codepen.io/dbox/pen/RawBEW
+
+@mixin material-shadow($z-depth: 1, $strength: 1, $color: black) {
+  @if $z-depth == 1 {
+    box-shadow: 0 rem(1px) rem(3px) rgba($color, $strength * 0.14), 0 rem(1px) rem(2px) rgba($color, $strength * 0.24);
+  }
+  @if $z-depth == 2 {
+    box-shadow: 0 rem(3px) rem(6px) rgba($color, $strength * 0.16), 0 rem(3px) rem(6px) rgba($color, $strength * 0.23);
+  }
+  @if $z-depth == 3 {
+    box-shadow: 0 rem(10px) rem(20px) rgba($color, $strength * 0.19), 0 rem(6px) rem(6px) rgba($color, $strength * 0.23);
+  }
+  @if $z-depth == 4 {
+    box-shadow: 0 rem(15px) rem(30px) rgba($color, $strength * 0.25), 0 rem(10px) rem(10px) rgba($color, $strength * 0.22);
+  }
+  @if $z-depth == 5{
+    box-shadow: 0 rem(20px) rem(40px) rgba($color, $strength * 0.30), 0 rem(15px) rem(12px) rgba($color, $strength * 0.22);
+  }
+  @if ($z-depth < 1) or ($z-depth > 5) {
+    @warn "$z-depth must be between 1 and 5";
+  }
+}
