@@ -1,7 +1,6 @@
 // ----
 // Reset
 // ----
-
 //- Mixin: Reset css
 ///
 /// Meyer reset. Use this when you want to nuke all styles. Otherwise maybe use
@@ -9,53 +8,137 @@
 /// @group rest
 /// @example
 ///   @include reset-css();
-
 @mixin reset-css {
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-  	margin: 0;
-  	padding: 0;
-  	border: 0;
-  	font-size: 100%;
-  	font: inherit;
-  	vertical-align: baseline;
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
   }
   /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-  	display: block;
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  section {
+    display: block;
   }
+
   body {
-  	line-height: 1;
+    line-height: 1;
   }
-  ol, ul {
-  	list-style: none;
+
+  ol,
+  ul {
+    list-style: none;
   }
-  blockquote, q {
-  	quotes: none;
+
+  blockquote,
+  q {
+    quotes: none;
   }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-  	content: '';
-  	content: none;
+
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: '';
+    content: none;
   }
+
   table {
-  	border-collapse: collapse;
-  	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
   }
 }
-
 //- Mixin: Normalize
 ///
 /// Normalize css. Keeps some defaults. Call this on the root of your project.
@@ -63,24 +146,40 @@
 /// @group reset
 /// @example
 ///   @include normalize();
-
 @mixin normalize {
-    /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+  /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
   html {
-    font-family: sans-serif; /* 1 */
-    -ms-text-size-adjust: 100%; /* 2 */
-    -webkit-text-size-adjust: 100%; /* 2 */
+    font-family: sans-serif;
+    /* 1 */
+    -ms-text-size-adjust: 100%;
+    /* 2 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
   }
 
   body {
     margin: 0;
   }
 
-  article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+  article,
+  aside,
+  details,
+  figcaption,
+  figure,
+  footer,
+  header,
+  main,
+  menu,
+  nav,
+  section,
+  summary {
     display: block;
   }
 
-  audio, canvas, progress, video {
+  audio,
+  canvas,
+  progress,
+  video {
     display: inline-block;
     vertical-align: baseline;
   }
@@ -90,7 +189,8 @@
     height: 0;
   }
 
-  [hidden],template {
+  [hidden],
+  template {
     display: none;
   }
 
@@ -98,7 +198,8 @@
     background-color: transparent;
   }
 
-  a:active, a:hover {
+  a:active,
+  a:hover {
     outline: 0;
   }
 
@@ -108,11 +209,13 @@
     text-decoration: underline dotted;
   }
 
-  b, strong {
+  b,
+  strong {
     font-weight: inherit;
   }
 
-  b, strong {
+  b,
+  strong {
     font-weight: bolder;
   }
 
@@ -157,7 +260,6 @@
   svg:not(:root) {
     overflow: hidden;
   }
-
   // We stray a bit here.
   figure {
     margin: 0;
@@ -173,12 +275,19 @@
     overflow: auto;
   }
 
-  code,kbd, pre,samp {
+  code,
+  kbd,
+  pre,
+  samp {
     font-family: monospace, monospace;
     font-size: 1em;
   }
 
-  button,  input, optgroup, select, textarea {
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
     font: inherit;
     margin: 0;
   }
@@ -192,21 +301,27 @@
     text-transform: none;
   }
 
-  button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  button,
+  html input[type="button"],
+  input[type="reset"],
+  input[type="submit"] {
     -webkit-appearance: button;
     cursor: pointer;
   }
 
-  button[disabled], html input[disabled] {
+  button[disabled],
+  html input[disabled] {
     cursor: default;
   }
 
-  button::-moz-focus-inner, input::-moz-focus-inner {
+  button::-moz-focus-inner,
+  input::-moz-focus-inner {
     border: 0;
     padding: 0;
   }
 
-  button:-moz-focusring, input:-moz-focusring {
+  button:-moz-focusring,
+  input:-moz-focusring {
     outline: 1px dotted ButtonText;
   }
 
@@ -214,12 +329,14 @@
     line-height: normal;
   }
 
-  input[type="checkbox"], input[type="radio"] {
+  input[type="checkbox"],
+  input[type="radio"] {
     box-sizing: border-box;
     padding: 0;
   }
 
-  input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     height: auto;
   }
 
@@ -227,7 +344,8 @@
     -webkit-appearance: textfield;
   }
 
-  input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
   }
 
@@ -250,10 +368,8 @@
     font-weight: bold;
   }
 }
-
 // Additional esets via scut:
 // https://github.com/davidtheclark/scut/
-
 // Clickable form elements should have a pointer.
 @mixin reset-pointer {
   a,
@@ -264,7 +380,6 @@
     cursor: pointer;
   }
 }
-
 // Border box is just better.
 @mixin reset-border-box {
   html {
@@ -277,7 +392,6 @@
     box-sizing: inherit;
   }
 }
-
 // Reset the forms
 @mixin reset-form {
   fieldset {
@@ -290,7 +404,6 @@
     resize: vertical;
   }
 }
-
 // Reset default button styles, which are never used.
 @mixin reset-button {
   button,
@@ -314,7 +427,6 @@
     }
   }
 }
-
 // Some paragraph margins just get in the way.
 @mixin reset-paragraph {
   p:first-of-type {
@@ -325,7 +437,6 @@
     margin-bottom: 0;
   }
 }
-
 // You want these elements fluid, probably.
 @mixin reset-media {
   img,
@@ -334,14 +445,12 @@
     max-width: 100%;
   }
 }
-
 // Remove default margins.
 @mixin reset-figure {
   figure {
     margin: 0;
   }
 }
-
 // Call them all
 @mixin reset-elements() {
   @include reset-border-box;

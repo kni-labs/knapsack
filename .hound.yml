@@ -3,3 +3,4 @@ javascript:
 
 scss:
   config_file: .scss-style.yml
+  ignore_file: test/*, knapsack/_reset.scss

@@ -1416,3 +1416,1462 @@ $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
     }
   }
 }
+
+// Font stacks
+
+$sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", Arial, sans-serif !default;
+$serif: Georgia, "Times New Roman", Times, serif !default;
+$monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+
+
+/// Sets the base font size for rem calculations;
+///
+/// @group settings
+/// @type Number (px)
+$base-font-size: 16px !default;
+
+
+// Color Resets via Material design
+// http://www.google.com/design/spec/style/color.html#color-color-palette
+$red:         #F44336 !default;
+$pink:        #E91E63 !default;
+$purple:      #9C27B0 !default;
+$deep-purple: #673AB7 !default;
+$indigo:      #3F51B5 !default;
+$blue:        #2196F3 !default;
+$light-blue:  #03A9F4 !default;
+$cyan:        #00BCD4 !default;
+$teal:        #009688 !default;
+$green:       #4CAF50 !default;
+$light-green: #8BC34A !default;
+$lime:        #CDDC39 !default;
+$orange:      #FF9800 !default;
+$deep-orange: #FF5722 !default;
+$brown:       #795548 !default;
+$grey:        #9E9E9E !default;
+$blue-gray:   #607D8B !default;
+
+
+/// Base gray - tweak this to add slight color tint to the grayscale, then base all grays off this color. If you want flat gray use #888888
+///
+/// @group settings
+/// @type Color (hex)
+$base-gray:   #707F8C !default;
+
+// Colors by use
+$color-primary: $blue !default;
+// ----
+// Utilities
+// ----
+
+/// Power function
+/// @param {Number} $x
+/// @param {Number} $n
+/// @return {Number}
+/// @group utilities
+/// @source https://github.com/adambom/Sass-Math/blob/master/math.scss Sass-Math
+@function pow($x, $n) {
+  $result: 1;
+
+  @if $n >= 0 {
+    @for $i from 1 through $n {
+        $result: $result * $x;
+    }
+  } @else {
+      @for $i from $n to 0 {
+        $result: $result / $x;
+      }
+    }
+  @return $result;
+}
+
+///
+/// Calculates and returns the rem value based on px input. Default base font
+/// size is 16px, but can be changed with a global `$base-font-size` variable.
+///
+/// @param {variable} $size - Size in pixels
+///
+/// @group utilities
+/// @example
+///   font-size: rem(30px);
+///   // returns font-size: 1.875rem;
+
+@function rem($size) {
+  $rem-size: $size / $base-font-size;
+  @return #{$rem-size}rem;
+}
+
+//- Function: Strip Unit
+///
+/// Sometimes it's just easier to do calculations with the unit is stripped.
+///
+/// @param {number} $number - Number that has a unit
+///
+/// @group utilities
+/// @example
+///   $length: 42px;
+///   $value: strip-unit($length);
+///   // -> 42
+/// @link https://css-tricks.com/snippets/sass/strip-unit-function/
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+//- Mixin: Debug
+///
+/// Debugging tool - adds a border to the current element, its children,
+/// grandchildren, etc so you can see what's up – great for precise layout
+/// tweaks.  It will also add flags if you made mistakes like put in inline
+/// styles, forgot an alt on an image, left the alt blank, etc. Not to be used
+/// in production, obviously.
+///
+/// @group utilities
+/// @example
+///   .container-elment {
+///     @include debug();
+///   }
+/// @link http://codepen.io/dbox/pen/GJZzYo?editors=110
+
+@mixin debug() {> * {  border: 1px solid green;} > * > * {border: 1px solid tomato; } > * > * > * { border: 1px solid DeepSkyBlue; } > * > * > * > * { border: 1px solid DeepPink; } > * > * > * > * > * { border: 1px solid MediumSlateBlue;}}
+
+// Mixin: Triangle
+//
+// Makes a little css triangle for you. Pass it a direction (up, down, left,
+// right), size (in pixels), and a color.
+//
+// ex. @include triangle()
+// ex. @include triangle('down', 15px, blue)
+
+//- Mixin: Triangle
+///
+/// Makes a little css triangle for you.
+///
+/// @param {variable} $direction [up] - Direction of the triangle: up, down left
+/// or right
+/// @param {variable} $size [10px] - Size of the triangle
+/// @param {variable} $color [#000] - Color of the triangle
+///
+/// @group utilities
+/// @example
+///   .element:after {
+///     @include triangle();
+///   }
+///   span {
+///     @include triangle(right, 8px, red);
+///   }
+
+@mixin triangle($direction:'up', $size:10px, $color:#000) {
+  width: 0;
+  height: 0;
+
+  @if $direction == 'up' {
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  } @else if $direction == 'down' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+  } @else if $direction == 'left' {
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    border-top: $size solid transparent;
+  } @else if $direction == 'right' {
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    border-top: $size solid transparent;
+  }
+}
+
+/// Returns the luminance of `$color` as a float (between 0 and 1)
+/// 1 is pure white, 0 is pure black
+/// @group utilities
+/// @param {Color} $color - Color
+/// @return {Number}
+/// @link http://www.w3.org/TR/2008/REC-WCAG20-20081211/#relativeluminancedef Reference
+/// @author Hugo Giradel
+
+@function luminance($color) {
+  $colors: (
+    'red': red($color),
+    'green': green($color),
+    'blue': blue($color)
+  );
+
+  @each $name, $value in $colors {
+    $adjusted: 0;
+    $value: $value / 255;
+
+    @if $value < 0.03928 {
+      $value: $value / 12.92;
+    } @else {
+      $value: ($value + .055) / 1.055;
+      $value: pow($value, 2);
+    }
+
+    $colors: map-merge($colors, ($name: $value));
+  }
+
+  @return (map-get($colors, 'red') * .2126) + (map-get($colors, 'green') * .7152) + (map-get($colors, 'blue') * .0722);
+}
+// ----
+// Typography
+// ----
+
+//- Mixin: Inline List
+///
+/// For when you need your list to be horizontal.
+///
+/// @param {variable} $spacing [20px] - Amount of spacing between elements -
+/// can be whatever unit you like.
+///
+/// @group typography
+/// @example
+///   ul {
+///     @include inline-list();
+///   }
+
+@mixin inline-list($spacing: 20px) {
+  @include clearfix();
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: left;
+    list-style-type: none;
+    margin-right: $spacing;
+  }
+
+  li:last-child {
+    margin-right: 0;
+  }
+}
+
+//- Mixin: Inline List
+///
+/// We tend to spend a great deal of time resetting all of the properties for
+/// lists. This puts them back to roughly the same state as browser defaults.
+/// You can pass it any option that [list-style-type]
+/// (http://www.w3schools.com/cssref/pr_list-style-type.asp) would normally
+/// take.
+///
+/// @param {variable} $style [disc] - Amount of spacing between elements.
+/// can be whatever unit you like.
+///
+/// @group typography
+/// @example
+///   ul {
+///     @include text-list();
+///   }
+///   ul {
+///     @include text-list('disc');
+///   }
+
+@mixin text-list($style: 'disc') {
+  margin: .32rem .94rem;
+  padding-left: 1rem;
+
+  li {
+    list-style-type: unquote($style);
+    padding: .125rem 0;
+  }
+}
+
+//- Mixin: Reset List
+///
+///  Resets the margins padding, and styles to list.
+///
+/// @group typography
+/// @example
+///   ul {
+///     @include reset-list();
+///   }
+
+@mixin reset-list() {
+  margin: 0;
+  padding: 0;
+
+  li {
+    float: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+
+//- Mixin: Ellipsis
+///
+/// Truncate text to the width of its container...
+///
+/// @param {variable} $width [100%] - Width of the container
+/// can be whatever unit you like.
+///
+/// @group typography
+/// @example
+///   h3 {
+///     @include ellipsis();
+///   }
+
+@mixin ellipsis($width: 100%) {
+  white-space: nowrap;
+  display: inline-block;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+}
+
+
+//- Mixin: Fluid Type
+///
+/// Magic calc + vh combo to allow text to be fluid between minimum
+/// and maximum breakpoints.
+///
+/// @group typography
+/// @param {variable} $min-font-size [12px] - Minimum font size
+/// @param {variable} $max-font-size [24px] - Maximum font size
+/// @param {variable} $lower-range [420px] - Stop scaling font smaller at this screen resolution
+/// @param {variable} $upper-range [900px] - Stop scaling font larger at this screen resolution
+/// @example
+///   h1 {
+///     @include fluid-type(20px, 48px);
+///   }
+/// @link http://codepen.io/dbox/pen/meaMba
+
+@mixin fluid-type($min-font-size: 12px, $max-font-size: 21px, $lower-range: 420px, $upper-range: 900px) {
+  font-size: calc(#{$min-font-size} + #{(($max-font-size / ($max-font-size * 0 + 1)) - ($min-font-size / ($min-font-size * 0 + 1)))} * ((100vw - #{$lower-range}) / #{(($upper-range / ($upper-range * 0 + 1)) - ($lower-range / ($lower-range * 0 + 1)))}));
+
+  @media screen and (max-width: $lower-range) {
+    font-size: $min-font-size;
+  }
+
+  @media screen and (min-width: $upper-range){
+    font-size: $max-font-size;
+  }
+}
+// ------
+// Animations
+// ------
+
+/// CSS cubic-bezier timing functions ported from Bourbon via jquery.easie (github.com/jaukia/easie)
+///
+/// @group animation
+/// @type cubic-bezier
+/// @link http://jqueryui.com/resources/demos/effect/easing.html
+
+$ease-in-quad: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$ease-in-cubic: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+$ease-in-quart: cubic-bezier(0.895, 0.030, 0.685, 0.220);
+$ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+$ease-in-sine: cubic-bezier(0.470, 0, 0.745, 0.715);
+$ease-in-expo: cubic-bezier(0.950, 0.050, 0.795, 0.035);
+$ease-in-circ: cubic-bezier(0.600, 0.040, 0.980, 0.335);
+$ease-in-back: cubic-bezier(0.600, -0.280, 0.735, 0.045);
+$ease-in-swift: cubic-bezier(0.900, 0, 0.450, 1);
+
+$ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1);
+$ease-out-quart: cubic-bezier(0.165, 0.840, 0.440, 1);
+$ease-out-quint: cubic-bezier(0.230, 1, 0.320, 1);
+$ease-out-sine: cubic-bezier(0.390, 0.575, 0.565, 1);
+$ease-out-expo: cubic-bezier(0.190, 1, 0.220, 1);
+$ease-out-circ: cubic-bezier(0.075, 0.820, 0.165, 1);
+$ease-out-back: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+$ease-out-swift: cubic-bezier(0.550, 0, 0.100, 1);
+
+$ease-in-out-quad: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-in-out-quart: cubic-bezier(0.770, 0, 0.175, 1);
+$ease-in-out-quint: cubic-bezier(0.860, 0, 0.070, 1);
+$ease-in-out-sine: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+$ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+$ease-in-out-back: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+$ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
+
+
+//- Mixin: Animated
+///
+/// Sets the main animation properties. Optionally, we have a very basic set of custom animtions that can be passed. Note you must call initialize-animation mixin on root of your document to enable the keyframes;
+///
+/// @param {variable} $animation-name [null] -  Currently available animation names: 'fade-in', 'fade-in-up', 'fade-in-down', 'over-scale'
+/// @param {variable} $animation-duration [.65s] -  How long animation takes
+/// @param {variable} $animation-easing [$ease-out-quad] -  Animation easing type
+/// @group animation
+/// @link http://codepen.io/dbox/pen/ZboVOg
+
+@mixin animated($animation-name: null, $animation-duration: .65s, $animation-delay: null, $animation-easing: $ease-out-quad) {
+  animation-timing-function: $animation-easing;
+  animation-duration: $animation-duration;
+  animation-fill-mode: both;
+
+  @if ($animation-name) {
+    animation-name: $animation-name;
+  }
+  @if ($animation-delay) {
+    animation-delay: $animation-delay;
+  }
+
+}
+
+//- Additive Mixin: Initialize animation
+///
+/// Render the keyframes needed for animation mixin. Required to pass animation-names to `animated` mixin.
+///
+/// @group animation
+/// @example
+///   @include initialize-animation();
+/// @link http://codepen.io/dbox/pen/ZboVOg
+
+@mixin initialize-animation() {
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translate3d(0, 15%, 0); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  @keyframes fade-in-down {
+    0% { opacity: 0; transform: translate3d(0, -15%, 0); }
+    100% { opacity: 1; transform: none; }
+  }
+
+  @keyframes over-scale {
+    0% { opacity: 0; transform: scale(0);  }
+    70% { transform: scale(1.1); }
+    100% { opacity: 1; transform: scale(1);  }
+  }
+
+  @keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1;}
+  }
+}
+// ------
+// Code
+// ------
+
+//- Mixin: Code
+///
+/// Styles inline code snippets on your page. Defaults to a beautiful red, but
+/// can be passed any color.
+///
+/// @group code
+/// @param {variable} $color [#DF5C33] - Text Color
+/// @example
+///   code {
+///     @include code(blue);
+///   }
+
+@mixin code($color : $color-primary) {
+  padding: 3px 4px;
+  color: $color;
+  background-color: lighten($base-gray, 45%);
+  border: 1px solid lighten($base-gray, 35%);
+  border-radius: 3px;
+  font-family: Menlo, Monaco, monospace;
+}
+
+//- Mixin: Pre
+///
+/// Some default styles for code blocks on your page. Takes not arguments
+///
+/// @group code
+/// @example
+///   pre {
+///     @include pre();
+///   }
+
+@mixin pre() {
+  display: block;
+  padding: 7px;
+  background-color: lighten($base-gray, 45%);
+  border: 1px solid lighten($base-gray, 35%);
+  border-radius: 3px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: Menlo, Monaco, monospace;
+  line-height: 160%;
+}
+// ----
+// Layout
+// ----
+
+//- Mixin: Clearfix
+///
+/// Just your standard clearfix.
+///
+/// @group layout
+/// @example
+///   @include clearfix();
+
+@mixin clearfix() {
+  &:after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+}
+
+//- Alias: cf
+///
+/// @group layout
+/// @example
+///   @include cf();
+/// @alias clearfix
+
+@mixin cf() {
+  @include clearfix();
+}
+
+//- Mixin: Ratio Box
+///
+/// This sets a specific width/height ratio. Useful on background images,
+/// iframes and Youtube embeds.
+///
+/// @param {variable} $ratio [1 / 1] - Aspect ratio: height / width
+/// @param {variable} $bg-color [$base-gray, .2] - placeholder background color
+/// @group layout
+/// @example
+///   figure {
+///     @include ratio(16 / 9);
+///   }
+/// @link http://www.mademyday.de/css-height-equals-width-with-pure-css.html
+
+@mixin ratio-box($ratio: 1 / 1, $bg-color: rgba($base-gray, .15)) {
+  background-color: $bg-color;
+  overflow: hidden;
+  position: relative;
+
+  > * {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    padding-top: (1 / $ratio) * 100%;
+  }
+}
+
+//- Mixin: Full Page
+///
+/// Create a responsive full page section with intelligent defaults.
+/// Resets on mobile.
+///
+/// @param {variable} $height [100vh] - Page height
+/// @param {variable} $max-height [850px] - Max page height
+/// @param {variable} $min-height [600px] - Min page height
+/// @param {variable} $breakpoint [768px] - Disable below this size or pass
+/// 'null' to not use a breakpoint.
+/// @group layout
+/// @example
+///   section {
+///     @include full-page();
+///   }
+///
+///   section {
+///     @include full-page(calc(100vh - 90px), 800px, 500px);
+///   }
+/// @link http://codepen.io/dbox/pen/OyzrrV
+
+@mixin full-page($height: 100vh, $max-height: 850px, $min-height: 600px, $breakpoint: 768px) {
+  // Disable below set breakpoint
+  @if ($breakpoint) {
+    @media screen and (min-width: $breakpoint) {
+      height: $height;
+      max-height: $max-height;
+      min-height: $min-height;
+    }
+  // Show for all sizes
+  } @else {
+    height: $height;
+    max-height: $max-height;
+    min-height: $min-height;
+  }
+}
+
+// Mixin: Vertically Align
+// Cross browser vertical align. Works down to IE9.
+//
+// ex. @include vertically-align();
+
+//- Mixin: Vertically Align
+///
+/// Cross browser vertical align. Works down to IE9.
+///
+/// @param {variable} $reset [Null] - Pass `false` to reset override to original
+/// values
+/// @group layout
+/// @example
+///   article {
+///     @include vertically-align();
+///   }
+///
+///   h4 {
+///     @include vertically-align(false);
+///   }
+/// @link http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+
+@mixin vertically-align($reset : null) {
+  @if ($reset != false) {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  } @else {
+    position: relative;
+    top: 0;
+    transform: translateY(0);
+  }
+}
+
+//- Mixin: Horizontal Rule
+///
+/// Clean reset for divider lines.
+///
+/// @param {variable} $color [rgba(#000, .15)] - Line color
+/// @param {variable} $spacing [1.5em] - Margin above and below the line
+///
+/// @group layout
+/// @example
+///   hr {
+///     @include rule();
+///   }
+///   hr.blue {
+///     @include rule(blue);
+///   }
+/// @todo - $border-width param
+
+@mixin rule($color: rgba(#000, .15), $spacing: 1.5em) {
+  border: 0;
+  border-bottom: 1px solid $color;
+  height: 0;
+  padding: 0;
+  margin: $spacing 0;
+}
+
+
+//- Mixin: Table Layout
+///
+/// Sets element and its children to use table layout. An old but very powerful
+/// css property for flexible layout challenges.
+///
+/// @param {variable} $layout-type [fixed] - `fixed` or `auto`
+///
+/// @group layout
+/// @example
+///   ul {
+///     @include table-layout();
+///   }
+/// @link http://codepen.io/dbox/pen/pvrZZV
+/// @link http://colintoh.com/blog/display-table-anti-hero
+
+@mixin table-layout($layout-type: 'fixed') {
+  display: table;
+  table-layout: $layout-type;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  > * {
+    display: table-cell;
+  }
+}
+
+//- Mixin: Absolute Center
+///
+/// Faster centering when your element has to be position: absolute;
+///
+/// @param {variable} $width [50%] - Width of your item
+///
+/// @group layout
+/// @example
+///   div {
+///     @include absolute-center(400px);
+///   }
+/// @link http://codepen.io/dbox/pen/vLgpqL
+
+@mixin absolute-center($width: 50%) {
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  right: 0;
+  width: $width;
+}
+
+//- Mixin: Material Shadow
+///
+/// Box shadows based on 5 Material Design presets;
+///
+/// @param {variable} $z-depth [1] - shadow distance on z-axis
+/// @param {variable} $strength [1] - multiplier for shadow strength/darkness
+/// @param {variable} $color [1] - shadow color
+/// @group layout
+/// @example
+///   div {
+///     @include material-shadow(3);
+///   }
+/// @link http://codepen.io/dbox/pen/RawBEW
+
+@mixin material-shadow($z-depth: 1, $strength: 1, $color: black) {
+  @if $z-depth == 1 {
+    box-shadow: 0 rem(1px) rem(3px) rgba($color, $strength * 0.14), 0 rem(1px) rem(2px) rgba($color, $strength * 0.24);
+  }
+  @if $z-depth == 2 {
+    box-shadow: 0 rem(3px) rem(6px) rgba($color, $strength * 0.16), 0 rem(3px) rem(6px) rgba($color, $strength * 0.23);
+  }
+  @if $z-depth == 3 {
+    box-shadow: 0 rem(10px) rem(20px) rgba($color, $strength * 0.19), 0 rem(6px) rem(6px) rgba($color, $strength * 0.23);
+  }
+  @if $z-depth == 4 {
+    box-shadow: 0 rem(15px) rem(30px) rgba($color, $strength * 0.25), 0 rem(10px) rem(10px) rgba($color, $strength * 0.22);
+  }
+  @if $z-depth == 5{
+    box-shadow: 0 rem(20px) rem(40px) rgba($color, $strength * 0.30), 0 rem(15px) rem(12px) rgba($color, $strength * 0.22);
+  }
+  @if ($z-depth < 1) or ($z-depth > 5) {
+    @warn "$z-depth must be between 1 and 5";
+  }
+}
+// ------
+// Tables
+// ------
+
+//- Mixin: Table
+///
+/// Ported directly from Twitter Bootstrap (by way of [Axis](axis.netlify.com)), as they did an
+/// excellent job with the tables.
+///
+/// @param {variable} $border [true] - Makes table bordered
+/// @param {variable} $striped [true] - Adds zebra striping
+/// @param {variable} $condensed [false] - Makes the table condensed
+/// @group table
+/// @example
+///   table {
+///     @include table();
+///   }
+/// @todo - make hover effect optional
+
+@mixin table($border : true, $striped : true, $condensed : false) {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 18px;
+  max-width: 100%;
+  width: 100%;
+
+  th,
+  td {
+    border-top: 1px solid lighten($base-gray, 30%);
+    line-height: 18px;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  thead th {
+    vertical-align: bottom;
+  }
+
+  thead:first-child tr th,
+  thead:first-child tr td {
+    border-top: 0;
+  }
+
+  tbody + tbody {
+    border-top: 2px solid lighten($base-gray, 30%);
+  }
+
+  @if $condensed {
+    th,
+    td {
+      padding: 4px 5px;
+    }
+  }
+
+  @if $border {
+    border: 1px solid lighten($base-gray, 30%);
+    border-collapse: separate;
+    border-radius: 4px;
+
+    th + th,
+    td + td,
+    th + td,
+    td + th {
+      border-left: 1px solid lighten($base-gray, 30%);
+    }
+
+    thead:first-child tr:first-child th,
+    tbody:first-child tr:first-child th,
+    tbody:first-child tr:first-child td {
+      border-top: 0;
+    }
+
+    thead:first-child tr:first-child th:first-child,
+    tbody:first-child tr:first-child td:first-child {
+      border-radius: 4px 0 0;
+    }
+
+    thead:first-child tr:first-child th:last-child,
+    tbody:first-child tr:first-child td:last-child {
+      border-radius: 0 4px;
+    }
+
+    thead:last-child tr:last-child th:first-child,
+    tbody:last-child tr:last-child td:first-child {
+      border-radius: 0 0 0 4px;
+    }
+
+    thead:last-child tr:last-child th:last-child,
+    tbody:last-child tr:last-child td:last-child {
+      border-radius: 0 0 4px;
+    }
+  }
+
+  @if $striped {
+    tbody tr:nth-child(odd) td,
+    tbody tr:nth-child(odd) th {
+      background-color: lighten($base-gray, 47%);
+    }
+  }
+
+  tbody tr:hover td,
+  tbody tr:hover th {
+    background-color: lighten($base-gray, 47%);
+  }
+}
+// ----
+// Reset
+// ----
+
+//- Mixin: Reset css
+///
+/// Meyer reset. Use this when you want to nuke all styles. Otherwise maybe use
+/// normalize mixin.
+/// @group rest
+/// @example
+///   @include reset-css();
+
+@mixin reset-css {
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+  	margin: 0;
+  	padding: 0;
+  	border: 0;
+  	font-size: 100%;
+  	font: inherit;
+  	vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+  	display: block;
+  }
+  body {
+  	line-height: 1;
+  }
+  ol, ul {
+  	list-style: none;
+  }
+  blockquote, q {
+  	quotes: none;
+  }
+  blockquote:before, blockquote:after,
+  q:before, q:after {
+  	content: '';
+  	content: none;
+  }
+  table {
+  	border-collapse: collapse;
+  	border-spacing: 0;
+  }
+}
+
+//- Mixin: Normalize
+///
+/// Normalize css. Keeps some defaults. Call this on the root of your project.
+///
+/// @group reset
+/// @example
+///   @include normalize();
+
+@mixin normalize {
+    /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+  html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }
+
+  body {
+    margin: 0;
+  }
+
+  article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
+    display: block;
+  }
+
+  audio, canvas, progress, video {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+
+  audio:not([controls]) {
+    display: none;
+    height: 0;
+  }
+
+  [hidden],template {
+    display: none;
+  }
+
+  a {
+    background-color: transparent;
+  }
+
+  a:active, a:hover {
+    outline: 0;
+  }
+
+  abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration: underline dotted;
+  }
+
+  b, strong {
+    font-weight: inherit;
+  }
+
+  b, strong {
+    font-weight: bolder;
+  }
+
+  dfn {
+    font-style: italic;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+  }
+
+  mark {
+    background-color: #ff0;
+    color: #000;
+  }
+
+  small {
+    font-size: 80%;
+  }
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  img {
+    border: 0;
+  }
+
+  svg:not(:root) {
+    overflow: hidden;
+  }
+
+  // We stray a bit here.
+  figure {
+    margin: 0;
+  }
+
+  hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+  }
+
+  pre {
+    overflow: auto;
+  }
+
+  code,kbd, pre,samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+  }
+
+  button,  input, optgroup, select, textarea {
+    font: inherit;
+    margin: 0;
+  }
+
+  button {
+    overflow: visible;
+  }
+
+  button,
+  select {
+    text-transform: none;
+  }
+
+  button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+  }
+
+  button[disabled], html input[disabled] {
+    cursor: default;
+  }
+
+  button::-moz-focus-inner, input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  button:-moz-focusring, input:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+
+  input {
+    line-height: normal;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+  }
+
+  input[type="search"] {
+    -webkit-appearance: textfield;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+  }
+
+  legend {
+    border: 0;
+    padding: 0;
+  }
+
+  textarea {
+    overflow: auto;
+  }
+
+  optgroup {
+    font-weight: bold;
+  }
+}
+
+// Additional esets via scut:
+// https://github.com/davidtheclark/scut/
+
+// Clickable form elements should have a pointer.
+@mixin reset-pointer {
+  a,
+  label,
+  select,
+  option,
+  button {
+    cursor: pointer;
+  }
+}
+
+// Border box is just better.
+@mixin reset-border-box {
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
+
+// Reset the forms
+@mixin reset-form {
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+// Reset default button styles, which are never used.
+@mixin reset-button {
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    width: auto;
+
+    &::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+    }
+  }
+}
+
+// Some paragraph margins just get in the way.
+@mixin reset-paragraph {
+  p:first-of-type {
+    margin-top: 0;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+// You want these elements fluid, probably.
+@mixin reset-media {
+  img,
+  video {
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+// Remove default margins.
+@mixin reset-figure {
+  figure {
+    margin: 0;
+  }
+}
+
+// Call them all
+@mixin reset-elements() {
+  @include reset-border-box;
+  @include reset-button;
+  @include reset-figure;
+  @include reset-form;
+  @include reset-media;
+  @include reset-paragraph;
+  @include reset-pointer;
+}
+// ----
+// Ui
+// ----
+
+//- Mixin: Button
+///
+/// A starting place for button styling.
+///
+/// @param {variable} $background-color [#00BFFF] - Button background color
+/// @param {variable} $color [#FFF] - Button text color
+///
+/// @group ui
+/// @example
+///   a.btn {
+///     @include button();
+///   }
+///   a.yellow-button {
+///     @include button(yellow, black);
+///   }
+
+@mixin button($background-color: $color-primary, $color: #FFF) {
+  $global-border-radius: 3px !default;
+  padding: 10px 22px;
+  border-radius: $global-border-radius;
+  background-color: $background-color;
+  color: $color;
+  cursor: pointer;
+  line-height: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  transition: all .2s ease;
+
+  &:hover {
+    background-color: darken($background-color, 10%);
+  }
+}
+
+//- Mixin: Select-box
+///
+/// Styling select boxes is the worst. Hopefully this makes life a little
+/// easier. Automagically colors elements based on luminance of the backbground
+/// color. Pass it a custom arrow image, or use a handy css-only triangle by
+/// default. Must be called on an element that wraps the select. Works with
+/// Safari, Chrome, Firefox, and IE10+.
+///
+/// @param {variable} $bg-color [#FFF] - default background-color
+/// @param {variable} $border-radius [.2em] - border radius
+/// @param {variable} $arrow-image [null] - Custom image for the dropdown
+/// @param {variable} $arrow-size [6px] - Size of arrow image (change if image
+/// provided)
+/// @param {variable} $focus-glow [#B4DEFA] - Sets a glow around the dropdown
+/// when focused. Remove with 'null'
+/// @param {variable} $text-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $bg-hover-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $border-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @param {variable} $border-hover-color [null] - Determined dynamically based on
+/// luminance of background color, but can be overwritten.
+/// @group forms
+/// @example
+///   .select-wrapper {
+///     @include select-box();
+///   }
+///
+///   .select-wrapper {
+///    @include select-box(#efefef, 0px, $arrow-size: 15px, $arrow-image: "http://dbox.us/_img/sample-arrow.png")
+///   }
+/// @link http://codepen.io/dbox/pen/YyBdog
+
+@mixin select-box ($bg-color: #FFF, $border-radius: .2em, $arrow-image: null, $arrow-size: 6px, $focus-glow: #B4DEFA, $text-color: null, $bg-hover-color: null, $border-color: null, $border-hover-color: null) {
+  // Detect if bg color is dark or light, then serve some intelligent defaults based that color
+  // todo: make more terse
+
+  // tolerance for changing the color
+  $l-tolerance: .65;
+
+  @if ($text-color) {
+    $text-color: $text-color;
+  } @else {
+    $text-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .7));
+  }
+  @if ($bg-hover-color) {
+    $bg-hover-color: $bg-hover-color;
+  } @else {
+    $bg-hover-color: if(luminance($bg-color) < $l-tolerance, darken($bg-color, 10%), $bg-color);
+  }
+  @if ($border-color) {
+    $border-color: $border-color;
+  } @else {
+    $border-color: if(luminance($bg-color) < $l-tolerance, $bg-color, rgba(#000, .25));
+  }
+  @if ($border-hover-color) {
+    $border-color: $border-hover-color;
+  } @else {
+    $border-hover-color: if(luminance($bg-color) < $l-tolerance, $bg-hover-color, rgba(#000, .45));
+  }
+  $arrow-color: if(luminance($bg-color) < $l-tolerance, rgba(255,255,255, .9), rgba(#000, .25));
+  $arrow-hover-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .45));
+
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  display: block;
+  padding: 0;
+  position: relative;
+  background: $bg-color;
+  color: $text-color;
+  transition: all .2s ease;
+
+  select {
+    appearance: none;
+    background: none;
+    border: 1px solid transparent;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    color: inherit;
+    font-size: 1em;
+    line-height: 1.3;
+    margin: 0;
+    outline: none;
+    padding: .3em 1.9em .5em .8em;
+    transition: all .2s ease;
+    width: 100%;
+
+    &:focus {
+      background-color: transparent;
+      border: 1px solid $border-hover-color;
+      outline: none;
+      @if ($focus-glow) {
+        box-shadow: 0 0 3px 3px $focus-glow;
+      }
+    }
+  }
+
+  &:after {
+    content: '';
+    height: $arrow-size;
+    margin-top: -.25em;
+    pointer-events: none;
+    position: absolute;
+    right: .7em;
+    top: 50%;
+    width: $arrow-size;
+    z-index: 2;
+
+    @if ($arrow-image) {
+      background-image: url($arrow-image);
+      background-position: right center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      margin-top: calc(#{$arrow-size} / 1.75 * -1);
+    } @else {
+      border-left: $arrow-size solid transparent;
+      border-right: $arrow-size solid transparent;
+      border-top: $arrow-size solid $arrow-color;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  &:hover {
+    background: $bg-hover-color;
+    border: 1px solid $border-hover-color;
+
+    &:after {
+      @if not ($arrow-image) {
+        border-top: $arrow-size solid $arrow-hover-color;
+      }
+    }
+  }
+
+  option {
+    font-weight: normal;
+  }
+
+  // Some browser hacks ---------
+
+  // Firefox
+  @-moz-document url-prefix() {
+    overflow: hidden;
+
+    select {
+      width: 120%;
+      width: -moz-calc(100% + 3em);
+      width: calc(100% + 3em);
+
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+    }
+  }
+
+  // IE10-11
+  select {
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:focus::-ms-value {
+      background: transparent;
+      color: #222;
+    }
+  }
+  // Note: opera support is possible, but needs some hacks outside of mixin:
+  // http://browserhacks.com/#hack-a3f166304aafed524566bc6814e1d5c7 */
+}
+
+//- Mixin: Radio
+///
+/// A simple reset for radio button styling across browsers. Note must be used
+/// on the <label> which wraps your radio inputs.
+///
+/// @param {variable} $color [#0074D9] - active radio button color
+/// @param {variable} $size [1em] - size of the radio button
+/// @group forms
+/// @example
+///   label {
+///     @include radio();
+///   }
+/// @link http://codepen.io/dbox/pen/gPPqEp
+
+@mixin radio($color: $color-primary, $size: 1em) {
+  $border-size: $size / 8;
+  cursor: pointer;
+  display: block;
+  line-height: 2.5em;
+
+  // Accessible hidden styles
+  [type="radio"] {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+
+    + span {
+      display: block;
+    }
+
+    // Unchecked
+    + span:before {
+      background: rgba(#000, .15);
+      border: $border-size solid #FFF;
+      border-radius: 1em;
+      box-shadow: 0 0 0 .1em rgba(#000, .25);
+      content: '';
+      display: inline-block;
+      height: $size;
+      margin-right: $size / 1.5;
+      transition: all 0.25s ease-out;
+      vertical-align: $size / -3.5;
+      width: $size;
+    }
+
+    // Checked
+    &:checked + span:before,
+    &:focus + span:before {
+      background: $color;
+      box-shadow: 0 0 0 0.25em rgba(#000, .15);
+    }
+  }
+}
