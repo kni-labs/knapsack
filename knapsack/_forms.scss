@@ -60,7 +60,7 @@
   } @else {
     $border-hover-color: if(luminance($bg-color) < $l-tolerance, $bg-hover-color, rgba(#000, .45));
   }
-  $arrow-color: if(luminance($bg-color) < $l-tolerance, rgba(255,255,255, .9), rgba(#000, .25));
+  $arrow-color: if(luminance($bg-color) < $l-tolerance, rgba(255, 255, 255, .9), rgba(#000, .25));
   $arrow-hover-color: if(luminance($bg-color) < $l-tolerance, #FFF, rgba(#000, .45));
 
   border: 1px solid $border-color;

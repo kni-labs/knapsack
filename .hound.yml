@@ -2,5 +2,5 @@ javascript:
   enabled: false
 
 scss:
-  config_file: .scss-style.yml
+  config_file: .scss-lint.yml
   ignore_file: test/*, knapsack/_reset.scss
