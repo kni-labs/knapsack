@@ -13,11 +13,11 @@
 
   @if $n >= 0 {
     @for $i from 1 through $n {
-        $result: $result * $x;
+      $result: $result * $x;
     }
   } @else {
-      @for $i from $n to 0 {
-        $result: $result / $x;
+    @for $i from $n to 0 {
+      $result: $result / $x;
       }
     }
   @return $result;
