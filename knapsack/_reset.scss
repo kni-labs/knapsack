@@ -466,8 +466,8 @@
 @mixin reset-headers {
   h1, h2, h3, h4, h5, h6 {
     display: block;
-    margin: 1rem 0;
     font-weight: normal;
+    margin: 1rem 0;
 
     &:first-child {
       margin-top: 0;
