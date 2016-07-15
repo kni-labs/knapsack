@@ -64,6 +64,25 @@
   }
 }
 
+//- Mixin: Cover
+///
+/// Useful shortcut for setting background size to cover
+///
+/// @param {variable} $x [center] - x position
+/// @param {variable} $y [center] - y position
+/// @group layout
+/// @example
+///   div.hero {
+///     @include cover(top, center);
+///   }
+
+@mixin cover($x: center, $y: center) {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: $x $y;
+}
 //- Mixin: Full Page
 ///
 /// Create a responsive full page section with intelligent defaults.
