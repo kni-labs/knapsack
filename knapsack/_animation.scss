@@ -50,9 +50,10 @@ $ease-in-out-swift: cubic-bezier(0.900, 0, 0.100, 1);
 /// @link http://codepen.io/dbox/pen/ZboVOg
 
 @mixin animated($animation-name: null, $animation-duration: .65s, $animation-delay: null, $animation-easing: $ease-out-quad) {
-  animation-timing-function: $animation-easing;
   animation-duration: $animation-duration;
   animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-timing-function: $animation-easing;
 
   @if ($animation-name) {
     animation-name: $animation-name;
