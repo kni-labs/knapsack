@@ -447,6 +447,20 @@
     margin: 0;
   }
 }
+
+@mixin reset-headers {
+  h1, h2, h3, h4, h5, h6 {
+    display: block;
+    margin: 1rem 0;
+    font-weight: normal;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    a { color: inherit;  }
+  }
+}
 // Call them all
 @mixin reset-elements() {
   @include reset-border-box;
@@ -456,4 +470,5 @@
   @include reset-media;
   @include reset-paragraph;
   @include reset-pointer;
+  @include reset-headers;
 }
